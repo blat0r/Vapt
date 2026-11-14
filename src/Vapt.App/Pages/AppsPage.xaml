@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.AppsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Vapt.Pages">
+
+    <Grid Padding="36,24,36,0" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel MaxWidth="{StaticResource PageMaxWidth}">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Aplicativos" />
+            <TextBlock
+                Margin="0,4,0,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Style="{StaticResource BodyTextBlockStyle}"
+                Text="Desinstale sem deixar rastro: depois do desinstalador, o Vapt procura as pastas e o registro que sobraram. Também atualiza seus programas."
+                TextWrapping="Wrap" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" MaxWidth="{StaticResource PageMaxWidth}" ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <SelectorBar x:Name="Tabs" Margin="-12,0,0,0" SelectionChanged="OnTabChanged">
+                <SelectorBarItem IsSelected="True" Text="Programas" />
+                <SelectorBarItem Text="Apps da Loja" />
+                <SelectorBarItem x:Name="UpdatesTab" Text="Atualizações" />
+            </SelectorBar>
+            <AutoSuggestBox
+                x:Name="SearchBox"
+                Grid.Column="1"
+                Width="240"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                PlaceholderText="Buscar"
+                QueryIcon="Find"
+                TextChanged="OnSearch" />
+            <ComboBox x:Name="SortBox" Grid.Column="2" MinWidth="140" VerticalAlignment="Center" SelectionChanged="OnSort">
+                <ComboBoxItem Content="Nome" />
+                <ComboBoxItem Content="Tamanho" />
+                <ComboBoxItem Content="Instalação" />
+            </ComboBox>
+            <ToggleButton
+                x:Name="SelectToggle"
+                Grid.Column="3"
+                VerticalAlignment="Center"
+                Click="OnSelectMode"
+                ToolTipService.ToolTip="Selecionar vários para desinstalar de uma vez">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon FontSize="14" Glyph="&#xE762;" />
+                    <TextBlock Text="Selecionar" />
+                </StackPanel>
+            </ToggleButton>
+        </Grid>
+
+        <!-- Barra do modo seleção / atualizações. -->
+        <Grid
+            x:Name="ActionBar"
+            Grid.Row="2"
+            MaxWidth="{StaticResource PageMaxWidth}"
+            Padding="16,10"
+            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            ColumnSpacing="12"
+            CornerRadius="{StaticResource ControlCornerRadius}"
+            Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center" Spacing="2">
+                <TextBlock x:Name="ActionText" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                <TextBlock x:Name="ActionDetail" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="Wrap" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                <CheckBox x:Name="SilentCheck" VerticalAlignment="Center" Content="Em silêncio quando der" IsChecked="True" />
+                <Button x:Name="ActionButton" MinWidth="150" Click="OnAction" Style="{StaticResource AccentButtonStyle}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" MaxWidth="{StaticResource PageMaxWidth}">
+            <ListView x:Name="List" Padding="0,0,0,24" SelectionMode="None">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0,0,0,4" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:AppRow">
+                        <Grid
+                            Padding="16,10"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            ColumnSpacing="14"
+                            CornerRadius="{StaticResource ControlCornerRadius}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <CheckBox MinWidth="0" Margin="0,0,-8,0" IsChecked="{x:Bind Selected, Mode=TwoWay}" Visibility="{x:Bind CheckVisibility, Mode=OneWay}" />
+                            <FontIcon Grid.Column="1" FontSize="20" Glyph="&#xECAA;" Opacity="0.7" Visibility="{x:Bind FallbackVisibility, Mode=OneWay}" />
+                            <Image Grid.Column="1" Width="28" Height="28" Source="{x:Bind Icon, Mode=OneWay}" />
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind Detail}" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                            <Border
+                                Grid.Column="3"
+                                Padding="8,2,8,3"
+                                VerticalAlignment="Center"
+                                Background="{ThemeResource SystemFillColorCautionBackgroundBrush}"
+                                CornerRadius="10"
+                                Visibility="{x:Bind BadgeVisibility}">
+                                <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind Badge}" />
+                            </Border>
+                            <TextBlock Grid.Column="4" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="{x:Bind SizeText}" />
+                            <StackPanel Grid.Column="5" Orientation="Horizontal" Spacing="4">
+                                <Button Click="OnPrimary" Content="{x:Bind PrimaryLabel}" Tag="{x:Bind}" />
+                                <Button Click="OnMore" Style="{StaticResource SubtleButtonStyle}" Tag="{x:Bind}" ToolTipService.ToolTip="Mais ações" Visibility="{x:Bind MoreVisibility}">
+                                    <FontIcon FontSize="14" Glyph="&#xE712;" />
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ProgressRing x:Name="Ring" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="False" />
+            <StackPanel x:Name="EmptyState" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Visibility="Collapsed">
+                <FontIcon FontSize="40" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Glyph="&#xE930;" />
+                <TextBlock x:Name="EmptyText" HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

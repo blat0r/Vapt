@@ -1,0 +1,1388 @@
+[
+    {
+        "id":  "Clipchamp.Clipchamp",
+        "name":  "Microsoft Clipchamp",
+        "description":  "Crie e edite vídeos com cortes, legendas e áudio",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.3DBuilder",
+        "name":  "3D Builder",
+        "description":  "Software básico de modelagem 3D (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.549981C3F5F10",
+        "name":  "Cortana",
+        "description":  "Assistente de voz Cortana da Microsoft (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingFinance",
+        "name":  "Dinheiro",
+        "description":  "App de notícias e acompanhamento financeiro da Microsoft",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingFoodAndDrink",
+        "name":  "MSN Food \u0026 Drink",
+        "description":  "Receitas e notícias gastronômicas (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingHealthAndFitness",
+        "name":  "MSN Health \u0026 Fitness",
+        "description":  "Acompanhamento de saúde e condicionamento físico, além de notícias (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingNews",
+        "name":  "Notícias",
+        "description":  "Feeds de notícias personalizados e alertas de notícias de última hora",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingSports",
+        "name":  "MSN Esportes",
+        "description":  "Notícias esportivas e placares (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingTranslator",
+        "name":  "Microsoft Translator",
+        "description":  "App de tradução da Microsoft para Windows (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingTravel",
+        "name":  "MSN Viagem",
+        "description":  "Planejamento de viagens e notícias (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.BingWeather",
+        "name":  "Clima",
+        "description":  "App de previsão do tempo da Microsoft",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Copilot",
+        "name":  "Microsoft Copilot",
+        "description":  "Assistente de IA para responder perguntas, redigir textos e gerar imagens",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Windows.AIHub",
+        "name":  "Copilot+ AI Hub",
+        "description":  "Conheça recursos e aplicativos de IA para PCs Copilot+",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Getstarted",
+        "name":  "Dicas",
+        "description":  "Dicas e guias para usar os recursos do Windows (preterido)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Messaging",
+        "name":  "Mensagens da Operadora",
+        "description":  "Receba SMS sobre planos de dados e cobranças em PCs com conexão celular; não permite enviar mensagens",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Microsoft3DViewer",
+        "name":  "Visualizador 3D",
+        "description":  "Visualizador de modelos 3D (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.MicrosoftJournal",
+        "name":  "Diário",
+        "description":  "Faça anotações à mão e esboços com uma caneta digital",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.MicrosoftOfficeHub",
+        "name":  "Microsoft 365 Copilot",
+        "description":  "Chat com IA, criação de conteúdo, pesquisa de arquivos e acesso aos aplicativos do Microsoft 365",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.MicrosoftPowerBIForWindows",
+        "name":  "Power BI",
+        "description":  "Cliente do serviço de análise de negócios (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.MicrosoftSolitaireCollection",
+        "name":  "Solitaire \u0026 Casual Games",
+        "description":  "Coleção de jogos de cartas de paciência",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.MicrosoftStickyNotes",
+        "name":  "Notas Autoadesivas",
+        "description":  "Crie notas na área de trabalho e sincronize-as entre dispositivos",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.MixedReality.Portal",
+        "name":  "Portal de Realidade Mista",
+        "description":  "Portal para visores de Realidade Mista do Windows (preterido)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.NetworkSpeedTest",
+        "name":  "Network Speed Test",
+        "description":  "Meça as velocidades de download e upload e a latência da rede",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Office.OneNote",
+        "name":  "OneNote for Windows 10",
+        "description":  "App de anotações digitais (versão da Plataforma Universal do Windows; descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Office.Sway",
+        "name":  "Sway",
+        "description":  "Crie e compartilhe apresentações, relatórios e histórias interativas",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.OneConnect",
+        "name":  "Planos de Celular",
+        "description":  "Escolha um plano de dados móveis para um PC compatível com um SIM aceito",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Print3D",
+        "name":  "Print 3D",
+        "description":  "Prepare modelos 3D para impressão (preterido)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.PowerAutomateDesktop",
+        "name":  "Power Automate",
+        "description":  "Automatize tarefas repetitivas do PC com fluxos da área de trabalho",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.SkypeApp",
+        "name":  "Skype",
+        "description":  "App de comunicação do Skype, versão da Plataforma Universal do Windows (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Todos",
+        "name":  "Microsoft To Do",
+        "description":  "App de listas de tarefas e gerenciamento de tarefas",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Windows.DevHome",
+        "name":  "Dev Home",
+        "description":  "Painel do desenvolvedor e utilitário de configuração de ferramentas (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WindowsAlarms",
+        "name":  "Relógio",
+        "description":  "App de alarmes, temporizadores, cronômetro e sessões de foco",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WindowsFeedbackHub",
+        "name":  "Hub de Comentários",
+        "description":  "App para enviar comentários sobre o Windows à Microsoft",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WindowsMaps",
+        "name":  "Mapas",
+        "description":  "App de mapas e navegação (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WindowsSoundRecorder",
+        "name":  "Gravador de Som",
+        "description":  "Grave áudio de um microfone e reproduza as gravações",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.XboxApp",
+        "name":  "Companheiro do Console Xbox",
+        "description":  "Antigo app Companheiro do Console Xbox (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.ZuneVideo",
+        "name":  "Filmes e TV",
+        "description":  "App para reproduzir vídeos comprados (novos aluguéis e compras foram descontinuados)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "MicrosoftCorporationII.MicrosoftFamily",
+        "name":  "Family",
+        "description":  "App para gerenciar o tempo de tela, os filtros de conteúdo e os relatórios de atividade da família",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "MicrosoftCorporationII.QuickAssist",
+        "name":  "Assistência Rápida",
+        "description":  "Compartilhamento de tela e controle remoto para resolver problemas do PC",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "MicrosoftTeams",
+        "name":  "Microsoft Teams (antigo)",
+        "description":  "Versão antiga do Teams para chats e chamadas pessoais",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "MSTeams",
+        "name":  "Microsoft Teams (novo)",
+        "description":  "Chats, chamadas e reuniões para contas corporativas, escolares e pessoais",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "ACGMediaPlayer",
+        "name":  "ACG Player",
+        "description":  "Reproduza áudio e vídeo locais com legendas e streaming DLNA",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "ActiproSoftwareLLC",
+        "name":  "Aplicativos Actipro (Code Writer)",
+        "description":  "Aplicativos da Actipro, incluindo o editor de texto e código Code Writer",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "AdobeSystemsIncorporated.AdobePhotoshopExpress",
+        "name":  "Adobe Express Photos",
+        "description":  "Edite fotos, remova objetos e fundos e anote capturas de tela",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Amazon.com.Amazon",
+        "name":  "Amazon",
+        "description":  "App de compras da Amazon",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "AmazonVideo.PrimeVideo",
+        "name":  "Prime Video",
+        "description":  "App do serviço de streaming Amazon Prime Video",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Asphalt8Airborne",
+        "name":  "Asphalt 8: Airborne",
+        "description":  "Corridas arcade com carros, motos e partidas multijogador",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "AutodeskSketchBook",
+        "name":  "Autodesk SketchBook",
+        "description":  "Antigo aplicativo de desenho e esboços da Autodesk (descontinuado)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "CaesarsSlotsFreeCasino",
+        "name":  "Caesars Casino - Casino Slots Game",
+        "description":  "Jogo de cassino de caça-níqueis",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "COOKINGFEVER",
+        "name":  "Cooking Fever",
+        "description":  "Jogo de culinária e gerenciamento de tempo em restaurantes",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "CyberLinkMediaSuiteEssentials",
+        "name":  "CyberLink Media Suite",
+        "description":  "Pacote de software multimídia (frequentemente pré-instalado por fabricantes de OEM)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "DisneyMagicKingdoms",
+        "name":  "O Reino Mágico da Disney",
+        "description":  "Jogo de construção de parques temáticos da Disney",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Disney.37853FC22B2CE",
+        "name":  "Disney+",
+        "description":  "App do serviço de streaming Disney+",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "DrawboardPDF",
+        "name":  "Drawboard PDF",
+        "description":  "Veja, edite e anote documentos PDF com caneta, toque ou mouse",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Duolingo-LearnLanguagesforFree",
+        "name":  "Duolingo",
+        "description":  "App de aprendizado de idiomas",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "FACEBOOK.FACEBOOK",
+        "name":  "Facebook",
+        "description":  "App de rede social Facebook",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "FarmVille2CountryEscape",
+        "name":  "FarmVille 2: Country Escape",
+        "description":  "Jogo de simulação de fazenda",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Flipboard",
+        "name":  "Flipboard",
+        "description":  "Agregador de notícias e redes sociais em formato de revista",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "HiddenCity",
+        "name":  "Hidden City: Aventura de Objetos Ocultos",
+        "description":  "Jogo de aventura e quebra-cabeças de objetos escondidos",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "HULULLC.HULUPLUS",
+        "name":  "Hulu",
+        "description":  "App do serviço de streaming Hulu",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "iHeartRadio",
+        "name":  "iHeart: Radio, Music, Podcasts",
+        "description":  "Ouça rádio ao vivo, músicas e podcasts",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Facebook.Instagram",
+        "name":  "Instagram",
+        "description":  "App de rede social Instagram",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "king.com.BubbleWitch3Saga",
+        "name":  "Bubble Witch 3 Saga",
+        "description":  "Jogo de quebra-cabeças de atirar bolhas com desafios mágicos",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "king.com.CandyCrushSaga",
+        "name":  "Candy Crush Saga",
+        "description":  "Jogo de quebra-cabeças de combinar três doces",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "king.com.CandyCrushSodaSaga",
+        "name":  "Candy Crush Soda Saga",
+        "description":  "Quebra-cabeças de combinar três doces com fases e modos de jogo temáticos de refrigerante",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "LinkedInforWindows",
+        "name":  "LinkedIn",
+        "description":  "App de rede profissional LinkedIn",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "MarchofEmpires",
+        "name":  "March of Empires",
+        "description":  "Jogo de estratégia",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "4DF9E0F8.Netflix",
+        "name":  "Netflix",
+        "description":  "App do serviço de streaming Netflix",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "NYTCrossword",
+        "name":  "NYT Crossword",
+        "description":  "App do jogo de palavras cruzadas do New York Times",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "OneCalendar",
+        "name":  "One Calendar",
+        "description":  "Veja e gerencie calendários de várias contas em um só lugar",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "PandoraMediaInc",
+        "name":  "Pandora",
+        "description":  "App de streaming de música do Pandora",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "PhototasticCollage",
+        "name":  "Phototastic Collage",
+        "description":  "App de criação de colagens de fotos",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "PicsArt-PhotoStudio",
+        "name":  "Picsart - Photo Studio",
+        "description":  "App de edição de fotos e criatividade",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "PolarrPhotoEditorAcademicEdition",
+        "name":  "Polarr Pro Photo Editor",
+        "description":  "Edite fotos com filtros, ajustes de cor e máscaras seletivas",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "flaregamesGmbH.RoyalRevolt",
+        "name":  "Royal Revolt! / Royal Revolt 2",
+        "description":  "Lidere tropas e lance feitiços para conquistar castelos em batalhas de ação e estratégia",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Sidia.LiveWallpaper",
+        "name":  "Samsung Live Wallpaper",
+        "description":  "Papéis de parede estáticos e animados para Samsung Galaxy Book",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "SlingTV",
+        "name":  "Sling TV",
+        "description":  "App do serviço de streaming de TV ao vivo",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "SpotifyAB.SpotifyMusic",
+        "name":  "Spotify",
+        "description":  "Ouça músicas e podcasts e gerencie playlists",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "BytedancePte.Ltd.TikTok",
+        "name":  "TikTok",
+        "description":  "App de vídeos curtos do TikTok",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "TuneInRadio",
+        "name":  "TuneIn Radio",
+        "description":  "Ouça rádio ao vivo, esportes, notícias e podcasts",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "WinZipUniversal",
+        "name":  "WinZip Universal",
+        "description":  "Utilitário de compactação e extração de arquivos (versão da Plataforma Universal do Windows)",
+        "recommended":  true,
+        "selected":  true,
+        "method":  "Appx",
+        "group":  "sponsored"
+    },
+    {
+        "id":  "Microsoft.BingSearch",
+        "name":  "Microsoft Bing",
+        "description":  "Este app integra a pesquisa na Web do Microsoft Bing à Pesquisa do Windows",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.GamingApp",
+        "name":  "XBOX",
+        "description":  "Aplicativo Xbox para Windows, necessário para instalar alguns jogos de PC",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.M365Companions",
+        "name":  "Microsoft 365 Companions",
+        "description":  "Aplicativos da barra de tarefas para calendários, contatos e arquivos do Microsoft 365 (em processo de descontinuação)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.MSPaint",
+        "name":  "Paint 3D",
+        "description":  "App de desenho 3D (descontinuado)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.OneDrive",
+        "name":  "OneDrive",
+        "description":  "Sincronize e faça backup de arquivos com o armazenamento em nuvem do OneDrive",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "WinGet",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.OutlookForWindows",
+        "name":  "Outlook",
+        "description":  "Aplicativo de email e calendário para contas Microsoft e outras contas compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Paint",
+        "name":  "Paint",
+        "description":  "Desenhe, recorte, redimensione e edite imagens",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.People",
+        "name":  "Pessoas",
+        "description":  "Armazena e organiza contatos para Email e Calendário (descontinuado)",
+        "recommended":  true,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "MicrosoftCorporationII.Windows365",
+        "name":  "Windows App",
+        "description":  "Cliente de área de trabalho remota e PC na nuvem (substitui o aplicativo Área de Trabalho Remota)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.RemoteDesktop",
+        "name":  "Área de Trabalho Remota",
+        "description":  "App cliente da Área de Trabalho Remota (versão da Microsoft Store; descontinuado)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.ScreenSketch",
+        "name":  "Ferramenta de Captura",
+        "description":  "Permite capturar imagens da tela, fazer anotações, salvar e compartilhar",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.StartExperiencesApp",
+        "name":  "Aplicativo Start Experiences",
+        "description":  "Este app dá suporte ao Meu Feed de Widgets do Windows",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.SurfaceHub",
+        "name":  "Surface",
+        "description":  "Configurações e suporte para dispositivos Surface, incluindo controles de carregamento inteligente nos modelos compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Whiteboard",
+        "name":  "Microsoft Whiteboard",
+        "description":  "App de quadro branco digital colaborativo",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.Windows.Photos",
+        "name":  "Fotos",
+        "description":  "Veja e organize fotos e vídeos e edite imagens",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WindowsCalculator",
+        "name":  "Calculadora",
+        "description":  "Cálculos básicos, científicos e gráficos e conversão de unidades",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WindowsCamera",
+        "name":  "Câmera",
+        "description":  "Tire fotos e grave vídeos com uma câmera integrada ou conectada",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.windowscommunicationsapps",
+        "name":  "Email e Calendário",
+        "description":  "Suíte de apps Email e Calendário (descontinuado)",
+        "recommended":  true,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WindowsNotepad",
+        "name":  "Bloco de notas",
+        "description":  "Crie e edite arquivos de texto simples, anotações e scripts",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.XboxGameOverlay",
+        "name":  "Xbox Game Overlay",
+        "description":  "Sobreposição de jogo que faz parte da Xbox Game Bar. Este aplicativo é necessário para determinados jogos. Aviso: desinstalar este aplicativo pode reduzir o desempenho dos jogos em PCs com determinados processadores modernos.",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.XboxGamingOverlay",
+        "name":  "Game Bar",
+        "description":  "Este aplicativo oferece uma sobreposição no jogo e integração com os serviços do Xbox. Este aplicativo é necessário para determinados jogos. Aviso: desinstalar este aplicativo pode reduzir o desempenho dos jogos em PCs com determinados processadores modernos.",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.YourPhone",
+        "name":  "Vincular ao Celular",
+        "description":  "Conecte um celular Android ou iPhone para receber notificações, ver mensagens e fazer chamadas no PC",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.ZuneMusic",
+        "name":  "Reprodutor Multimídia",
+        "description":  "Reproduza arquivos locais de áudio e vídeo e organize sua biblioteca de músicas",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "MicrosoftWindows.CrossDevice",
+        "name":  "Dispositivos móveis",
+        "description":  "Integração de dispositivos móveis com o Explorador de Arquivos e recursos de câmera",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "MicrosoftWindows.Client.WebExperience",
+        "name":  "Windows Widgets",
+        "description":  "Ajuda a entregar e atualizar determinados recursos, como os Widgets, por meio do Microsoft Store",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "Microsoft.WidgetsPlatformRuntime",
+        "name":  "Runtime da Plataforma de Widgets",
+        "description":  "Runtime necessário para o funcionamento dos Widgets do Windows",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "microsoft"
+    },
+    {
+        "id":  "AD2F1837.OMENCommandCenter",
+        "name":  "HP OMEN Gaming Hub",
+        "description":  "Central de jogos da HP para monitoramento de desempenho e configurações do dispositivo",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AcerIncorporated.AcerCareCenterS",
+        "name":  "Acer Care Center",
+        "description":  "Informações do dispositivo e ferramentas de diagnóstico e manutenção da Acer",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "B9ECED6F.ASUSPCAssistant",
+        "name":  "MyASUS",
+        "description":  "Configurações, diagnóstico e suporte para dispositivos ASUS, incluindo controles de bateria e ventoinha nos modelos compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "B9ECED6F.Glidex",
+        "name":  "ASUS GlideX",
+        "description":  "Aplicativo da ASUS para compartilhamento de tela e transferência de arquivos entre dispositivos",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCoLtd.SamsungQuickShare",
+        "name":  "Samsung Quick Share",
+        "description":  "Aplicativo da Samsung para compartilhamento de arquivos entre dispositivos próximos",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "9426MICRO-STARINTERNATION.MSICenter",
+        "name":  "MSI Center",
+        "description":  "Configurações do dispositivo e monitoramento de desempenho da MSI",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCO.LTD.PCGallery",
+        "name":  "Samsung Galeria",
+        "description":  "Galeria de fotos e vídeos da Samsung",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCoLtd.SamsungFlux",
+        "name":  "Samsung Flow",
+        "description":  "Aplicativo da Samsung para conectar o telefone ao PC, compartilhar arquivos e sincronizar notificações",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCoLtd.SamsungNotes",
+        "name":  "Samsung Notes",
+        "description":  "Notas, escrita à mão e anotações em PDF em Galaxy Books compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "B9ECED6F.ScreenPadMaster",
+        "name":  "ASUS ScreenXpert",
+        "description":  "Gerenciamento de janelas da ASUS e controles do ScreenPad nos modelos compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCO.LTD.SamsungStudio",
+        "name":  "Samsung Estúdio",
+        "description":  "Aplicativo de edição de vídeo da Samsung",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCO.LTD.SamsungScreenRecording",
+        "name":  "Samsung Gravador de tela",
+        "description":  "Grave a tela e a webcam em Galaxy Books compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCO.LTD.Bixby",
+        "name":  "Samsung Bixby",
+        "description":  "Comandos de voz para aplicativos, arquivos e configurações em Galaxy Books compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCO.LTD.SamsungWelcome",
+        "name":  "Samsung Galaxy Book Experience",
+        "description":  "Iniciador de aplicativos da Samsung e guias de recursos para Galaxy Book",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCO.LTD.SmartThingsWindows",
+        "name":  "Samsung SmartThings",
+        "description":  "Aplicativo da Samsung para conectar, monitorar e controlar dispositivos de casa inteligente",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCoLtd.MultiControl",
+        "name":  "Samsung Multicontrole",
+        "description":  "Aplicativo da Samsung para compartilhar teclado e mouse entre dispositivos Galaxy compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCoLtd.SecondScreen",
+        "name":  "Samsung Segunda tela",
+        "description":  "Aplicativo da Samsung para usar um tablet Galaxy compatível como tela adicional do PC",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "SAMSUNGELECTRONICSCO.LTD.PENUP",
+        "name":  "Samsung PENUP",
+        "description":  "Aplicativo da Samsung para desenhar e colorir",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "9426MICRO-STARINTERNATION.BusinessCenter",
+        "name":  "MSI Center Pro",
+        "description":  "Configurações, diagnóstico e otimização de desempenho de dispositivos MSI",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AcerIncorporated.AcerRegistration",
+        "name":  "Acer Product Registration",
+        "description":  "Aplicativo de registro de produtos Acer",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "E0469640.SmartAppearance",
+        "name":  "Lenovo Smart Appearance",
+        "description":  "Efeitos de câmera e melhorias de videochamadas da Lenovo",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "LGElectronics.LGMonitorApp",
+        "name":  "LG Monitor App Installer",
+        "description":  "Instala utilitários para monitores LG compatíveis. O Windows Update pode reinstalar o aplicativo quando um monitor LG estiver conectado",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPAIExperienceCenter",
+        "name":  "HP AI Experience Center",
+        "description":  "Aplicativo HP pré-instalado em determinados PCs HP com IA",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPConnectedMusic",
+        "name":  "HP Connected Music",
+        "description":  "Antigo aplicativo HP para músicas locais, bibliotecas do iTunes e serviços de streaming",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPConnectedPhotopoweredbySnapfish",
+        "name":  "HP Connected Photo",
+        "description":  "Antigo aplicativo HP para sincronizar fotos, compartilhar pelo Snapfish e encomendar impressões",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPDesktopSupportUtilities",
+        "name":  "HP Desktop Support Utilities",
+        "description":  "Exibe o modelo, o número de série e as informações do BIOS do PC HP",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPEasyClean",
+        "name":  "HP Easy Clean",
+        "description":  "Desativa temporariamente dispositivos de entrada para permitir a limpeza do computador",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPFileViewer",
+        "name":  "HP File Viewer",
+        "description":  "Visualizador de arquivos HP; formatos compatíveis não confirmados",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPJumpStarts",
+        "name":  "HP JumpStarts",
+        "description":  "Configuração do PC HP, registro do produto e recomendações de aplicativos",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPPCHardwareDiagnosticsWindows",
+        "name":  "HP PC Hardware Diagnostics Windows",
+        "description":  "Testa o hardware do PC, como memória e armazenamento, para ajudar a diagnosticar falhas",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPPowerManager",
+        "name":  "HP Power Manager",
+        "description":  "Monitore a integridade da bateria e gerencie a carga em notebooks HP compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPPrinterControl",
+        "name":  "HP Smart",
+        "description":  "Imprima, digitalize e gerencie impressoras HP compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPPrivacySettings",
+        "name":  "HP PC Privacy Settings",
+        "description":  "Gerencie as preferências de privacidade e compartilhamento de dados dos aplicativos HP",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPQuickDrop",
+        "name":  "HP QuickDrop",
+        "description":  "App de transferência de arquivos (descontinuado)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPQuickTouch",
+        "name":  "HP QuickTouch",
+        "description":  "Componente HP QuickTouch; função exata não confirmada",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPRegistration",
+        "name":  "HP Registration",
+        "description":  "Software OEM da HP para registro de produto",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPSupportAssistant",
+        "name":  "HP Support Assistant",
+        "description":  "Software OEM da HP para suporte, atualizações e solução de problemas",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPSureShieldAI",
+        "name":  "HP Sure Shield AI",
+        "description":  "Utilitário HP; função exata não confirmada",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPSystemInformation",
+        "name":  "HP System Information",
+        "description":  "Exibe o modelo, o número de série e as informações do BIOS do PC HP",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPWelcome",
+        "name":  "HP Welcome",
+        "description":  "Aplicativo de boas-vindas e suporte da HP",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.HPWorkWell",
+        "name":  "HP WorkWell",
+        "description":  "Lembretes de pausas, exercícios de alongamento e dicas para usar o PC de forma mais saudável (descontinuado)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "AD2F1837.myHP",
+        "name":  "HP",
+        "description":  "Configurações de dispositivos HP, suporte e recursos de impressão em dispositivos compatíveis",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "E046963F.LenovoCompanion",
+        "name":  "Lenovo Vantage",
+        "description":  "App central da Lenovo para configurações do dispositivo, atualizações e suporte",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "LenovoCompanyLimited.LenovoVantageService",
+        "name":  "Lenovo Vantage Service",
+        "description":  "Componente de serviço em segundo plano do Lenovo Vantage",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "DellInc.DellSupportAssistforPCs",
+        "name":  "Dell SupportAssist",
+        "description":  "Ferramenta de suporte, diagnóstico e atualizações da OEM Dell",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "DellInc.DellDigitalDelivery",
+        "name":  "Dell Digital Delivery",
+        "description":  "Software OEM da Dell para entrega de software previamente adquirido (descontinuado)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    },
+    {
+        "id":  "DellInc.DellMobileConnect",
+        "name":  "Dell Mobile Connect",
+        "description":  "Conecte celulares Android e iPhones a um PC Dell (descontinuado)",
+        "recommended":  false,
+        "selected":  false,
+        "method":  "Appx",
+        "group":  "oem"
+    }
+]

@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Vapt.Core/Vapt.Core.csproj" />
+    <Project Path="src/Vapt.App/Vapt.App.csproj">
+      <Platform Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Vapt.Core.Tests/Vapt.Core.Tests.csproj" />
+  </Folder>
+</Solution>

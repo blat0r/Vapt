@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.TweaksPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer Padding="{StaticResource PageContentPadding}">
+        <StackPanel x:Name="Body" MaxWidth="{StaticResource PageMaxWidth}" Margin="0,24,0,0" Spacing="{StaticResource SettingsCardSpacing}">
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Otimizações" />
+                    <TextBlock
+                        Margin="0,4,0,8"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        Style="{StaticResource BodyTextBlockStyle}"
+                        Text="Como o Windows funciona: interface, sistema e jogos. Cada ajuste guarda o valor original e pode ser desfeito."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+                <Button
+                    x:Name="UndoAllButton"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Click="OnUndoAll">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon FontSize="14" Glyph="&#xE7A7;" />
+                        <TextBlock Text="Desfazer tudo" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <InfoBar x:Name="StatusBar" IsClosable="True" />
+            <StackPanel x:Name="Groups" Spacing="{StaticResource SettingsCardSpacing}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

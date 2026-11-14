@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.DuplicatesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="36,24,36,0" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid MaxWidth="{StaticResource PageMaxWidth}" ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Arquivos duplicados" />
+                <TextBlock
+                    Margin="0,4,0,0"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{StaticResource BodyTextBlockStyle}"
+                    Text="Acha cópias idênticas (mesmo conteúdo, não só o mesmo nome) e deixa você apagar as sobras."
+                    TextWrapping="Wrap" />
+            </StackPanel>
+            <ComboBox x:Name="MinSizeBox" Grid.Column="1" MinWidth="150" VerticalAlignment="Center" ToolTipService.ToolTip="Ignorar arquivos menores que">
+                <ComboBoxItem Content="A partir de 100 KB" />
+                <ComboBoxItem Content="A partir de 1 MB" />
+                <ComboBoxItem Content="A partir de 10 MB" />
+                <ComboBoxItem Content="A partir de 100 MB" />
+            </ComboBox>
+            <Button Grid.Column="2" VerticalAlignment="Center" Click="OnPickFolder">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon FontSize="14" Glyph="&#xE8DA;" />
+                    <TextBlock x:Name="FolderText" Text="Escolher pasta" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="ScanButton" Grid.Column="3" MinWidth="110" VerticalAlignment="Center" Click="OnScan" IsEnabled="False" Style="{StaticResource AccentButtonStyle}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon FontSize="14" Glyph="&#xE721;" />
+                    <TextBlock x:Name="ScanText" Text="Procurar" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid
+            x:Name="SummaryBar"
+            Grid.Row="1"
+            MaxWidth="{StaticResource PageMaxWidth}"
+            Padding="16,10"
+            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            ColumnSpacing="12"
+            CornerRadius="{StaticResource ControlCornerRadius}"
+            Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center" Spacing="4">
+                <TextBlock x:Name="SummaryText" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                <TextBlock x:Name="SummaryDetail" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="Wrap" />
+                <ProgressBar x:Name="Progress" Maximum="1" Visibility="Collapsed" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                <Button x:Name="SelectCopiesButton" Click="OnSelectCopies" Content="Marcar as cópias" />
+                <Button x:Name="DeleteButton" MinWidth="150" Click="OnDelete" IsEnabled="False" Style="{StaticResource AccentButtonStyle}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" MaxWidth="{StaticResource PageMaxWidth}">
+            <ScrollViewer Padding="0,0,0,24">
+                <StackPanel x:Name="Groups" Spacing="8" />
+            </ScrollViewer>
+            <StackPanel x:Name="EmptyState" MaxWidth="420" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                <FontIcon FontSize="44" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Glyph="&#xE8C8;" />
+                <TextBlock x:Name="EmptyTitle" HorizontalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Text="Escolha uma pasta para procurar" TextAlignment="Center" TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="EmptyDetail"
+                    HorizontalAlignment="Center"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="Downloads, Imagens e Vídeos costumam ter várias cópias do mesmo arquivo. A pasta do Windows é sempre ignorada."
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

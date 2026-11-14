@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.UsbPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:tk="using:CommunityToolkit.WinUI.Controls">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel MaxWidth="{StaticResource PageMaxWidth}" Margin="{StaticResource PageHeaderMargin}">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Pendrive" />
+            <TextBlock
+                Margin="0,4,0,12"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Style="{StaticResource BodyTextBlockStyle}"
+                Text="Formate um pendrive ou crie um pendrive de instalação do Windows ou Linux." />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Padding="36,0,36,16">
+            <StackPanel x:Name="Body" MaxWidth="{StaticResource PageMaxWidth}" Spacing="{StaticResource SettingsCardSpacing}">
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromVerticalOffset="24" IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
+
+                <!-- Dispositivo -->
+                <TextBlock Margin="1,0,0,6" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Dispositivo" />
+                <tk:SettingsCard Description="Só aparecem pendrives e cartões. O disco do Windows nunca entra na lista." Header="Pendrive">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE88E;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <ComboBox
+                            x:Name="DiskBox"
+                            MinWidth="300"
+                            PlaceholderText="Nenhum pendrive encontrado"
+                            SelectionChanged="OnDiskChanged" />
+                        <Button Click="OnRefresh" ToolTipService.ToolTip="Atualizar a lista">
+                            <FontIcon FontSize="14" Glyph="&#xE72C;" />
+                        </Button>
+                    </StackPanel>
+                </tk:SettingsCard>
+                <InfoBar
+                    x:Name="ExternalWarning"
+                    Title="Isso parece um HD ou SSD externo"
+                    IsClosable="False"
+                    Message="Confira se é mesmo o disco certo: tudo nele será apagado."
+                    Severity="Warning" />
+
+                <!-- Boot -->
+                <TextBlock Style="{StaticResource SectionHeaderStyle}" Text="Seleção de boot" />
+                <tk:SettingsCard Description="Só formatar, ou gravar uma imagem para instalar um sistema." Header="O que fazer">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE7B8;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="BootBox" MinWidth="300" SelectionChanged="OnBootChanged">
+                        <ComboBoxItem Content="Só formatar (sem boot)" />
+                        <ComboBoxItem Content="Imagem de disco (ISO ou IMG)" />
+                    </ComboBox>
+                </tk:SettingsCard>
+                <tk:SettingsCard x:Name="ImageCard" Header="Imagem" Description="Nenhuma imagem escolhida">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE958;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <ProgressRing x:Name="ImageRing" Width="18" Height="18" IsActive="False" />
+                        <Button Click="OnPickImage" Content="Selecionar…" />
+                    </StackPanel>
+                </tk:SettingsCard>
+                <tk:SettingsCard x:Name="ModeCard" Header="Modo de gravação" Description="Copiar arquivos funciona com o Windows e com a maioria das distros em UEFI. Gravar imagem (DD) copia byte a byte, como o Etcher.">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE8B7;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="ModeBox" MinWidth="220" SelectionChanged="OnModeChanged">
+                        <ComboBoxItem Content="Copiar arquivos" />
+                        <ComboBoxItem Content="Gravar imagem (DD)" />
+                    </ComboBox>
+                </tk:SettingsCard>
+
+                <!-- Instalação do Windows -->
+                <tk:SettingsExpander
+                    x:Name="WindowsCard"
+                    Description="Opções gravadas no pendrive (autounattend.xml), aplicadas durante a instalação."
+                    Header="Instalação do Windows"
+                    IsExpanded="True">
+                    <tk:SettingsExpander.HeaderIcon>
+                        <FontIcon Glyph="&#xE782;" />
+                    </tk:SettingsExpander.HeaderIcon>
+                    <tk:SettingsExpander.Items>
+                        <tk:SettingsCard Description="Permite instalar o Windows 11 em PCs sem TPM 2.0, Secure Boot ou 4 GB de RAM." Header="Remover exigências de TPM, Secure Boot e RAM">
+                            <ToggleSwitch x:Name="BypassToggle" />
+                        </tk:SettingsCard>
+                        <tk:SettingsCard Description="Deixa criar uma conta local sem internet (pode não funcionar nas versões mais novas)." Header="Permitir conta local">
+                            <ToggleSwitch x:Name="LocalAccountToggle" />
+                        </tk:SettingsCard>
+                        <tk:SettingsCard Description="Evita que o disco seja criptografado sozinho na primeira inicialização." Header="Desligar o BitLocker automático">
+                            <ToggleSwitch x:Name="BitLockerToggle" />
+                        </tk:SettingsCard>
+                    </tk:SettingsExpander.Items>
+                </tk:SettingsExpander>
+
+                <!-- Partição -->
+                <TextBlock x:Name="PartitionHeader" Style="{StaticResource SectionHeaderStyle}" Text="Partição" />
+                <tk:SettingsCard x:Name="SchemeCard" Header="Esquema de partição">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xF156;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="SchemeBox" MinWidth="220" SelectionChanged="OnSchemeChanged">
+                        <ComboBoxItem Content="MBR" />
+                        <ComboBoxItem Content="GPT" />
+                    </ComboBox>
+                </tk:SettingsCard>
+
+                <!-- Formatação -->
+                <TextBlock x:Name="FormatHeader" Style="{StaticResource SectionHeaderStyle}" Text="Opções de formatação" />
+                <tk:SettingsCard x:Name="LabelCard" Header="Nome do volume">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE8AC;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <TextBox x:Name="LabelBox" MinWidth="220" Text="PENDRIVE" />
+                </tk:SettingsCard>
+                <tk:SettingsCard x:Name="FsCard" Header="Sistema de arquivos">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE8B7;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="FsBox" MinWidth="220" SelectionChanged="OnFsChanged">
+                        <ComboBoxItem Content="FAT32" />
+                        <ComboBoxItem Content="exFAT" />
+                        <ComboBoxItem Content="NTFS" />
+                    </ComboBox>
+                </tk:SettingsCard>
+                <tk:SettingsCard x:Name="ClusterCard" Description="Deixe no padrão se não souber." Header="Tamanho do cluster">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE80A;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="ClusterBox" MinWidth="220" />
+                </tk:SettingsCard>
+                <tk:SettingsCard x:Name="QuickCard" Description="A completa lê e zera todo o pendrive (bem mais lenta)." Header="Formatação rápida">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE945;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="QuickToggle" IsOn="True" />
+                </tk:SettingsCard>
+                <tk:SettingsCard x:Name="VerifyCard" Description="Lê tudo de volta e compara com a imagem. Pega pendrives falsificados ou com defeito." Header="Verificar depois de gravar">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE73E;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="VerifyToggle" IsOn="True" />
+                </tk:SettingsCard>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Status fixo embaixo, como no Rufus. -->
+        <Border
+            Grid.Row="2"
+            Padding="36,14,36,16"
+            Background="{ThemeResource LayerFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="0,1,0,0">
+            <Grid MaxWidth="{StaticResource PageMaxWidth}" ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center" Spacing="6">
+                    <TextBlock x:Name="StatusText" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Pronto" TextTrimming="CharacterEllipsis" />
+                    <ProgressBar x:Name="Progress" Maximum="100" Value="0" />
+                    <TextBlock x:Name="TargetText" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
+                    <Button x:Name="CancelButton" Click="OnCancel" Content="Cancelar" Visibility="Collapsed" />
+                    <Button x:Name="StartButton" MinWidth="120" Click="OnStart" Style="{StaticResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontSize="14" Glyph="&#xE768;" />
+                            <TextBlock Text="Iniciar" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

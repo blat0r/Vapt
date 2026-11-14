@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:tk="using:CommunityToolkit.WinUI.Controls">
+
+    <ScrollViewer Padding="{StaticResource PageContentPadding}">
+        <StackPanel MaxWidth="{StaticResource PageMaxWidth}" Margin="0,24,0,0" Spacing="{StaticResource SettingsCardSpacing}">
+            <TextBlock Margin="0,0,0,8" Style="{StaticResource TitleTextBlockStyle}" Text="Configurações" />
+
+            <TextBlock Margin="1,0,0,6" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Aparência" />
+            <tk:SettingsCard Description="Claro, escuro ou igual ao Windows." Header="Tema">
+                <tk:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE790;" />
+                </tk:SettingsCard.HeaderIcon>
+                <ComboBox x:Name="ThemeBox" MinWidth="200" SelectionChanged="OnThemeChanged">
+                    <ComboBoxItem Content="Usar a configuração do sistema" />
+                    <ComboBoxItem Content="Claro" />
+                    <ComboBoxItem Content="Escuro" />
+                </ComboBox>
+            </tk:SettingsCard>
+
+            <TextBlock Style="{StaticResource SectionHeaderStyle}" Text="Segurança" />
+            <tk:SettingsCard Description="Antes da primeira otimização de sistema de cada sessão. Recomendado." Header="Ponto de restauração antes de otimizar">
+                <tk:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE81C;" />
+                </tk:SettingsCard.HeaderIcon>
+                <ToggleSwitch x:Name="RestoreToggle" Toggled="OnRestoreToggled" />
+            </tk:SettingsCard>
+            <tk:SettingsCard Description="No mapa do disco, &quot;Excluir&quot; manda para a Lixeira em vez de apagar de vez." Header="Excluir para a Lixeira">
+                <tk:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE74D;" />
+                </tk:SettingsCard.HeaderIcon>
+                <ToggleSwitch x:Name="RecycleToggle" Toggled="OnRecycleToggled" />
+            </tk:SettingsCard>
+            <tk:SettingsCard x:Name="AdminCard" Header="Modo administrador">
+                <tk:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xEA18;" />
+                </tk:SettingsCard.HeaderIcon>
+                <Button x:Name="AdminButton" Click="OnAdmin" Content="Reiniciar como administrador" />
+            </tk:SettingsCard>
+            <tk:SettingsCard Description="Pede permissão (UAC) toda vez que o Vapt abre, para tudo ficar liberado sem reiniciar o app." Header="Sempre abrir como administrador">
+                <tk:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE7EF;" />
+                </tk:SettingsCard.HeaderIcon>
+                <ToggleSwitch x:Name="AlwaysAdminToggle" Toggled="OnAlwaysAdminToggled" />
+            </tk:SettingsCard>
+
+            <TextBlock Style="{StaticResource SectionHeaderStyle}" Text="Sobre" />
+            <tk:SettingsExpander x:Name="AboutCard" Description="Por blat0r · Rápido como um vapt vupt." Header="Vapt">
+                <tk:SettingsExpander.HeaderIcon>
+                    <ImageIcon Source="ms-appx:///Assets/Vapt.png" />
+                </tk:SettingsExpander.HeaderIcon>
+                <TextBlock x:Name="VersionText" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                <tk:SettingsExpander.Items>
+                    <tk:SettingsCard Description="Criado por blat0r." Header="Autor">
+                        <tk:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE77B;" />
+                        </tk:SettingsCard.HeaderIcon>
+                        <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="blat0r" />
+                    </tk:SettingsCard>
+                    <tk:SettingsCard Description="Lista de apps baseada no Win11Debloat (MIT). Ajustes conferidos com WinUtil e privacy.sexy." Header="Créditos">
+                        <tk:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE8F1;" />
+                        </tk:SettingsCard.HeaderIcon>
+                    </tk:SettingsCard>
+                    <tk:SettingsCard Description="Registros do que o Vapt fez (limpezas, otimizações, pendrive)." Header="Pasta de logs" IsClickEnabled="True" Click="OnOpenLogs" />
+                    <tk:SettingsCard Description="Valores originais guardados para desfazer as otimizações." Header="Backup das otimizações" IsClickEnabled="True" Click="OnOpenData" />
+                </tk:SettingsExpander.Items>
+            </tk:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

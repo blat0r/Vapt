@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.StartupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer Padding="{StaticResource PageContentPadding}">
+        <StackPanel x:Name="Body" MaxWidth="{StaticResource PageMaxWidth}" Margin="0,24,0,0" Spacing="{StaticResource SettingsCardSpacing}">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Inicialização" />
+            <TextBlock
+                Margin="0,4,0,8"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Style="{StaticResource BodyTextBlockStyle}"
+                Text="Programas que abrem sozinhos com o Windows. Menos itens aqui = PC pronto mais rápido depois de ligar. Desligar não desinstala nada."
+                TextWrapping="Wrap" />
+
+            <Grid Margin="0,8,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="CountText" VerticalAlignment="Center" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                <Button Grid.Column="1" Click="OnRefresh" ToolTipService.ToolTip="Atualizar">
+                    <FontIcon FontSize="14" Glyph="&#xE72C;" />
+                </Button>
+            </Grid>
+            <StackPanel x:Name="List" Spacing="{StaticResource SettingsCardSpacing}">
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
