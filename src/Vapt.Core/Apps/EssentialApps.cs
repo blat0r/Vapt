@@ -6,26 +6,26 @@ public sealed record EssentialApp(string Name, string Description, string Winget
 
 /// <summary>
 /// Apps para instalar depois de formatar, pelo winget (baixa do site oficial e confere o hash),
-/// como o "Instalar apps" do ResetExplode e o Ninite.
+/// no estilo do Ninite: marca o que quer e instala tudo de uma vez, em silêncio.
 /// </summary>
 public static class EssentialApps
 {
     public static IReadOnlyList<EssentialApp> Catalog { get; } =
     [
-        new("Google Chrome", "Navegador do Google.", "Google.Chrome", "Google Chrome", "Navegadores"),
+        new("Google Chrome", "O navegador mais usado; sincroniza com a conta Google.", "Google.Chrome", "Google Chrome", "Navegadores"),
         new("Firefox", "Navegador da Mozilla, focado em privacidade.", "Mozilla.Firefox", "Mozilla Firefox", "Navegadores", false),
         new("Brave", "Navegador com bloqueador de anúncios embutido.", "Brave.Brave", "Brave", "Navegadores", false),
-        new("Discord", "Chat de voz e texto para jogar com os amigos.", "Discord.Discord", "Discord", "Comunicação"),
+        new("Discord", "Voz, vídeo e chat em servidores, o padrão para jogar em grupo.", "Discord.Discord", "Discord", "Comunicação"),
         new("WhatsApp", "WhatsApp para computador.", "9NKSQGP7F2NH", "WhatsApp", "Comunicação", false),
-        new("Steam", "Loja e biblioteca de jogos da Valve.", "Valve.Steam", "Steam", "Jogos"),
+        new("Steam", "A maior loja de jogos de PC, com a sua biblioteca e os amigos.", "Valve.Steam", "Steam", "Jogos"),
         new("Epic Games Launcher", "Loja da Epic (Fortnite e jogos grátis toda semana).", "EpicGames.EpicGamesLauncher", "Epic Games Launcher", "Jogos", false),
-        new("7-Zip", "Compactador grátis: abre zip, rar e 7z.", "7zip.7zip", "7-Zip", "Utilitários"),
-        new("WinRAR", "Compactador clássico (pago depois do teste). Escolha ele ou o 7-Zip.", "RARLab.WinRAR", "WinRAR", "Utilitários", false),
-        new("Lightshot", "Print de uma parte da tela com a tecla Print Screen.", "Skillbrains.Lightshot", "Lightshot", "Utilitários", false),
+        new("7-Zip", "Abre e cria .zip, .rar e .7z. Gratuito e de código aberto.", "7zip.7zip", "7-Zip", "Utilitários"),
+        new("WinRAR", "Alternativa ao 7-Zip para .rar; depois de 40 dias pede licença.", "RARLab.WinRAR", "WinRAR", "Utilitários", false),
+        new("Lightshot", "Recorta um pedaço da tela e já gera um link para compartilhar.", "Skillbrains.Lightshot", "Lightshot", "Utilitários", false),
         new("ShareX", "Prints e gravação de tela completos, grátis.", "ShareX.ShareX", "ShareX", "Utilitários", false),
         new("Notepad++", "Editor de texto leve com abas.", "Notepad++.Notepad++", "Notepad++", "Utilitários", false),
         new("PowerToys", "Ferramentas extras da Microsoft para o Windows.", "Microsoft.PowerToys", "PowerToys", "Utilitários", false),
-        new("VLC", "Player que abre qualquer vídeo e música.", "VideoLAN.VLC", "VLC media player", "Mídia"),
+        new("VLC", "Toca praticamente qualquer formato de vídeo e áudio, sem codecs extras.", "VideoLAN.VLC", "VLC media player", "Mídia"),
         new("Spotify", "Música e podcasts.", "Spotify.Spotify", "Spotify", "Mídia", false),
         new("OBS Studio", "Gravar a tela e fazer live.", "OBSProject.OBSStudio", "OBS Studio", "Mídia", false),
         new("Visual Studio Code", "Editor de código da Microsoft.", "Microsoft.VisualStudioCode", "Microsoft Visual Studio Code", "Desenvolvimento", false),

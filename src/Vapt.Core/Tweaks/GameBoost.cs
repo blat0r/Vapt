@@ -5,43 +5,50 @@ namespace Vapt.Core.Tweaks;
 public sealed record BackgroundApp(string ProcessName, string Title, long MemoryBytes, int Count, bool HasWindow, bool Suggested);
 
 /// <summary>
-/// "Turbo para jogar" (como o RESET OTIMIZA do ResetExplode): lista os programas em segundo
-/// plano, já marcando os seguros (OneDrive, Teams, Widgets, Adobe…), e fecha os escolhidos.
-/// Programas com janela recebem o pedido normal de fechar (salvam o que precisam); só os sem
-/// janela são encerrados. Não mexe em sistema, antivírus nem drivers.
+/// "Turbo para jogar": mostra o que está rodando em segundo plano e gastando memória, já
+/// marcando o que dá para fechar sem perder nada (sincronização de nuvem, chat, atualizadores),
+/// e fecha o que você escolher. Quem tem janela recebe o pedido normal de fechar e pode salvar;
+/// só o que roda escondido é encerrado. Processos do Windows, do antivírus e dos drivers de
+/// vídeo nunca aparecem.
 /// </summary>
 public static class GameBoost
 {
+    /// <summary>Nunca aparecem na lista.</summary>
     private static readonly HashSet<string> Protected = new(StringComparer.OrdinalIgnoreCase)
     {
-        "System", "Idle", "Registry", "smss", "csrss", "wininit", "winlogon", "services", "lsass", "lsaiso", "svchost",
-        "dwm", "explorer", "fontdrvhost", "sihost", "ctfmon", "taskhostw", "RuntimeBroker", "StartMenuExperienceHost",
-        "ShellExperienceHost", "SearchHost", "SearchApp", "SearchIndexer", "TextInputHost", "SecurityHealthService", "SecurityHealthSystray",
-        "MsMpEng", "NisSrv", "SgrmBroker", "audiodg", "conhost", "dllhost", "spoolsv", "WmiPrvSE", "LockApp", "ApplicationFrameHost",
-        "SystemSettings", "smartscreen", "MemCompression", "Secure System", "WUDFHost", "dasHost", "nvcontainer", "NVDisplay.Container",
-        "atiesrxx", "atieclxx", "amdfendrsr", "RadeonSoftware", "igfxEM", "Vapt", "cmd", "powershell", "pwsh", "WindowsTerminal",
-        "OpenConsole", "devenv", "Code", "dotnet", "claude", "Update", "msedgewebview2",
+        // Núcleo do Windows
+        "Idle", "System", "Secure System", "Registry", "MemCompression", "smss", "csrss", "wininit", "winlogon",
+        "services", "lsass", "lsaiso", "svchost", "dwm", "fontdrvhost", "WUDFHost", "dasHost", "spoolsv", "WmiPrvSE", "audiodg",
+        // Área de trabalho, Iniciar e pesquisa
+        "explorer", "sihost", "taskhostw", "ctfmon", "RuntimeBroker", "ApplicationFrameHost", "StartMenuExperienceHost",
+        "ShellExperienceHost", "SearchHost", "SearchApp", "SearchIndexer", "TextInputHost", "LockApp", "SystemSettings", "dllhost", "conhost",
+        // Segurança
+        "MsMpEng", "NisSrv", "SecurityHealthService", "SecurityHealthSystray", "SgrmBroker", "smartscreen",
+        // Drivers de vídeo
+        "nvcontainer", "NVDisplay.Container", "atiesrxx", "atieclxx", "amdfendrsr", "RadeonSoftware", "igfxEM",
+        // Terminais, ferramentas de desenvolvimento e o próprio Vapt
+        "Vapt", "Update", "cmd", "powershell", "pwsh", "WindowsTerminal", "OpenConsole", "devenv", "Code", "dotnet", "claude", "msedgewebview2",
     };
 
-    /// <summary>Seguros de fechar durante o jogo (vêm marcados).</summary>
+    /// <summary>Vêm marcados: fechar não perde nada e libera memória, disco ou rede durante o jogo.</summary>
     private static readonly Dictionary<string, string> Suggested = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["OneDrive"] = "Sincronização do OneDrive (usa disco e rede)",
-        ["ms-teams"] = "Microsoft Teams",
-        ["Teams"] = "Microsoft Teams (clássico)",
+        ["OneDrive"] = "OneDrive · sincroniza arquivos e usa a internet",
+        ["GoogleDriveFS"] = "Google Drive · sincronização",
+        ["Dropbox"] = "Dropbox · sincronização",
+        ["ms-teams"] = "Teams · chat do trabalho",
+        ["Teams"] = "Teams clássico",
         ["Skype"] = "Skype",
         ["PhoneExperienceHost"] = "Vincular ao Celular",
-        ["Widgets"] = "Widgets do Windows",
-        ["WidgetService"] = "Serviço de Widgets",
-        ["AdobeARM"] = "Atualizador da Adobe",
-        ["CCXProcess"] = "Adobe Creative Cloud",
-        ["Creative Cloud"] = "Adobe Creative Cloud",
-        ["AdobeIPCBroker"] = "Adobe (segundo plano)",
-        ["GoogleDriveFS"] = "Google Drive",
-        ["Dropbox"] = "Dropbox",
-        ["OfficeClickToRun"] = "Atualizador do Office",
+        ["Widgets"] = "Widgets · notícias e clima",
+        ["WidgetService"] = "Widgets · serviço",
         ["Copilot"] = "Copilot",
         ["msedge"] = "Microsoft Edge",
+        ["AdobeARM"] = "Adobe · procura atualizações",
+        ["AdobeIPCBroker"] = "Adobe · processo auxiliar",
+        ["CCXProcess"] = "Adobe Creative Cloud",
+        ["Creative Cloud"] = "Adobe Creative Cloud",
+        ["OfficeClickToRun"] = "Office · procura atualizações",
     };
 
     public static List<BackgroundApp> List()

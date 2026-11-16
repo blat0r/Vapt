@@ -25,7 +25,7 @@ public sealed record NetworkResult(
     string Adapter);
 
 /// <summary>
-/// Diagnóstico de lag (como o teste de rede do ResetExplode): ping, jitter e perda até o roteador e
+/// Diagnóstico de lag: ping, jitter e perda até o roteador e
 /// até a internet, tempo de DNS, velocidade pelo speed.cloudflare.com e ping com a linha cheia
 /// (bufferbloat). O veredito diz se o problema está no Wi-Fi/roteador ou no provedor.
 /// </summary>

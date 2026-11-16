@@ -12,7 +12,7 @@ public sealed record DiskBenchResult(double SeqReadMBs, double SeqWriteMBs, doub
 }
 
 /// <summary>
-/// Teste de disco no estilo CrystalDiskMark (e do DiskBench do ResetExplode): sequencial de 1 MB e
+/// Teste de disco no estilo CrystalDiskMark: sequencial de 1 MB e
 /// aleatório de 4 KB com fila 1 e 32, sem o cache do Windows (FILE_FLAG_NO_BUFFERING), num arquivo
 /// temporário que é apagado no fim.
 /// </summary>

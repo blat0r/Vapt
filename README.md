@@ -123,7 +123,6 @@ git push origin v1.2.0
 ## Créditos
 
 - Lista de apps do Debloat: [Win11Debloat](https://github.com/Raphire/Win11Debloat) (MIT).
-- Meu PC, teste de disco e de rede, instalar apps e Turbo para jogar foram inspirados no [ResetExplode](https://github.com/GustavoReset/ResetExplode) (MIT).
 - Sensores pelo [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor) (MPL-2.0); FPS pelo [TraceEvent](https://github.com/microsoft/perfview) (MIT); 3D pelo [Vortice](https://github.com/amerkoleci/Vortice.Windows) (MIT).
 - Ajustes conferidos com o [WinUtil](https://github.com/ChrisTitusTech/winutil) e o [privacy.sexy](https://github.com/undergroundwires/privacy.sexy).
 - A pesquisa por trás das escolhas está em [reports/](reports/Otimizadores%20de%20PC%20para%20o%20Vapt.md). Avisos completos em [NOTICE.md](NOTICE.md).

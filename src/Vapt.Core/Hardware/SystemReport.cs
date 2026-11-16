@@ -55,7 +55,7 @@ public sealed record SystemReport(
     DateTime CreatedAt);
 
 /// <summary>
-/// Ficha do PC pelo WMI (como a aba Sistema do ResetExplode e o CPU-Z): SO, placa-mãe, CPU,
+/// Ficha do PC pelo WMI (no estilo do CPU-Z e do Speccy): SO, placa-mãe, CPU,
 /// RAM por módulo, GPU, saúde dos discos (S.M.A.R.T. pelo Windows Storage) e bateria.
 /// </summary>
 public static class SystemReportBuilder
