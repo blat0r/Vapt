@@ -149,7 +149,7 @@ public static class HealthCheck
         var pending = new List<Tweak>();
         foreach (var id in PrivacyBasics)
         {
-            if (TweakCatalog.All.FirstOrDefault(t => t.Id == id) is { } t && !await TweakEngine.IsAppliedAsync(t))
+            if (TweakCatalog.Available.FirstOrDefault(t => t.Id == id) is { } t && !await TweakEngine.IsAppliedAsync(t))
             {
                 pending.Add(t);
             }

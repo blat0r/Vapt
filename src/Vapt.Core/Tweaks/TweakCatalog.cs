@@ -16,6 +16,9 @@ public static class TweakCatalog
     private const string Edge = @"HKLM\SOFTWARE\Policies\Microsoft\Edge";
     private const string Chrome = @"HKLM\SOFTWARE\Policies\Google\Chrome";
 
+    /// <summary>As que existem nesta versão do Windows (no 10 somem as que são só do 11).</summary>
+    public static IEnumerable<Tweak> Available => All.Where(t => t.AvailableHere);
+
     public static IReadOnlyList<Tweak> All { get; } =
     [
         // ── Privacidade ──────────────────────────────────────────────────
@@ -132,6 +135,7 @@ public static class TweakCatalog
         new()
         {
             Id = "recall-snapshots",
+            MinBuild = 22000,
             Group = TweakGroup.AI,
             Name = "Impedir o Recall de fotografar a tela",
             Description = "O Recall tira uma captura da tela a cada poucos segundos e guarda num banco de dados pesquisável (gasta disco e memória). Isto desliga o salvamento das capturas.",
@@ -145,6 +149,7 @@ public static class TweakCatalog
         new()
         {
             Id = "recall-remove",
+            MinBuild = 22000,
             Group = TweakGroup.AI,
             Name = "Remover o Recall do Windows",
             Description = "Política da Microsoft que tira o componente do Recall de vez (Windows 11 24H2 ou mais novo). Vale depois de reiniciar.",
@@ -156,6 +161,7 @@ public static class TweakCatalog
         new()
         {
             Id = "click-to-do",
+            MinBuild = 22000,
             Group = TweakGroup.AI,
             Name = "Desligar o Click to Do",
             Description = "Recurso que analisa o que está na tela quando você aperta Win + clique.",
@@ -183,6 +189,7 @@ public static class TweakCatalog
         new()
         {
             Id = "ai-apps",
+            MinBuild = 22000,
             Group = TweakGroup.AI,
             Name = "Tirar a IA do Paint e do Bloco de Notas",
             Description = "Some com o Cocreator, Preenchimento generativo e Criador de imagens do Paint e com a reescrita por IA do Bloco de Notas.",
@@ -236,6 +243,7 @@ public static class TweakCatalog
         new()
         {
             Id = "start-recommended",
+            MinBuild = 22000,
             Group = TweakGroup.Ads,
             Name = "Tirar a seção \"Recomendados\" do Iniciar",
             Description = "Some a lista de arquivos recentes e apps sugeridos embaixo do menu Iniciar.",
@@ -255,6 +263,7 @@ public static class TweakCatalog
         new()
         {
             Id = "phone-link-start",
+            MinBuild = 22000,
             Group = TweakGroup.Ads,
             Name = "Tirar o Vincular ao Celular do Iniciar",
             Description = "Esconde o painel do celular que aparece ao lado do menu Iniciar.",
@@ -264,6 +273,7 @@ public static class TweakCatalog
         new()
         {
             Id = "settings-365-ads",
+            MinBuild = 22000,
             Group = TweakGroup.Ads,
             Name = "Tirar propaganda do Microsoft 365 das Configurações",
             Description = "Sem os cartões oferecendo Microsoft 365, OneDrive e Game Pass na página da conta.",
@@ -367,6 +377,7 @@ public static class TweakCatalog
         new()
         {
             Id = "classic-menu",
+            MinBuild = 22000,
             Group = TweakGroup.Interface,
             Name = "Menu de contexto clássico",
             Description = "O botão direito volta a mostrar todas as opções, sem o \"Mostrar mais opções\".",
@@ -412,6 +423,7 @@ public static class TweakCatalog
         new()
         {
             Id = "taskbar-left",
+            MinBuild = 22000,
             Group = TweakGroup.Interface,
             Name = "Barra de tarefas à esquerda",
             Description = "Ícones e Iniciar no canto, como no Windows 10.",
@@ -421,6 +433,7 @@ public static class TweakCatalog
         new()
         {
             Id = "end-task",
+            MinBuild = 22000,
             Group = TweakGroup.Interface,
             Name = "\"Finalizar tarefa\" na barra de tarefas",
             Description = "Botão direito num app travado na barra mostra \"Finalizar tarefa\".",
@@ -430,6 +443,7 @@ public static class TweakCatalog
         new()
         {
             Id = "widgets",
+            MinBuild = 22000,
             Group = TweakGroup.Ads,
             Name = "Desligar Widgets",
             Description = "Tira o painel de notícias e clima da barra (por política, sem desinstalar nada).",

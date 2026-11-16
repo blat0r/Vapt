@@ -36,6 +36,11 @@ public static class SystemInfo
 
     public static TimeSpan Uptime => TimeSpan.FromMilliseconds(Environment.TickCount64);
 
+    /// <summary>Build do Windows (19045 = Windows 10 22H2, 22000+ = Windows 11).</summary>
+    public static int Build { get; } = Environment.OSVersion.Version.Build;
+
+    public static bool IsWindows11 => Build >= 22000;
+
     /// <summary>Notebook/tablet (tem bateria): GetSystemPowerStatus, BatteryFlag 128 = sem bateria.</summary>
     public static bool HasBattery => GetSystemPowerStatus(out var s) && s.BatteryFlag != 128 && s.BatteryFlag != 255;
 

@@ -17,6 +17,7 @@ public sealed partial class MainWindow : Window
     private static readonly (string Tag, string Name, string Glyph, Type Page)[] Sections =
     [
         ("home", "Início", "", typeof(HomePage)),
+        ("system", "Meu PC", "", typeof(SystemPage)),
         ("cleanup", "Limpeza", "", typeof(CleanupPage)),
         ("tweaks", "Otimizações", "", typeof(TweaksPage)),
         ("startup", "Inicialização", "", typeof(StartupPage)),
@@ -24,6 +25,7 @@ public sealed partial class MainWindow : Window
         ("debloat", "Debloat", "", typeof(DebloatPage)),
         ("disk", "Espaço em disco", "", typeof(DiskPage)),
         ("duplicates", "Duplicados", "", typeof(DuplicatesPage)),
+        ("network", "Rede", "", typeof(NetworkPage)),
         ("usb", "Pendrive", "", typeof(UsbPage)),
         ("repair", "Reparar", "", typeof(RepairPage)),
     ];
@@ -40,15 +42,78 @@ public sealed partial class MainWindow : Window
         AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "Vapt.ico"));
         AdminBadge.Visibility = Elevation.IsAdministrator ? Visibility.Visible : Visibility.Collapsed;
+        ConfigureBackdrop();
         ConfigureSize();
         BuildNavigation();
         ApplyTheme();
 
         // "Usar a configuração do sistema" acompanha o Windows na hora (claro/escuro e cor de destaque).
         _uiSettings.ColorValuesChanged += (_, _) => DispatcherQueue.TryEnqueue(ApplyTheme);
+
+        // Atualização automática: alguns segundos depois de abrir e a cada 6 horas.
+        Closed += (_, _) => Updater.ApplyOnExitIfReady();
+        if (App.Settings.AutoUpdate)
+        {
+            _ = CheckUpdatesSoonAsync();
+            _updateTimer = DispatcherQueue.CreateTimer();
+            _updateTimer.Interval = TimeSpan.FromHours(6);
+            _updateTimer.Tick += async (_, _) => await CheckUpdatesAsync();
+            _updateTimer.Start();
+        }
+    }
+
+    private Microsoft.UI.Dispatching.DispatcherQueueTimer? _updateTimer;
+
+    private async Task CheckUpdatesSoonAsync()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(8));
+        await CheckUpdatesAsync();
+    }
+
+    /// <summary>Procura, baixa e avisa. Também usado pelo botão das Configurações.</summary>
+    public async Task<UpdateState> CheckUpdatesAsync()
+    {
+        var state = await Updater.CheckAndDownloadAsync();
+        if (state == UpdateState.Ready)
+        {
+            ShowUpdateReady();
+        }
+
+        return state;
+    }
+
+    public void ShowUpdateReady()
+    {
+        var restart = new Button { Content = "Reiniciar e atualizar", Style = (Style)Application.Current.Resources["AccentButtonStyle"] };
+        restart.Click += (_, _) => Updater.ApplyAndRestart();
+        UpdateBar.Message = $"A versão {Updater.ReadyVersion} já foi baixada. Reinicie agora ou ela entra sozinha quando você fechar o Vapt.";
+        UpdateBar.ActionButton = restart;
+        UpdateBar.IsOpen = true;
     }
 
     private readonly Windows.UI.ViewManagement.UISettings _uiSettings = new();
+
+    /// <summary>
+    /// Mica só existe no Windows 11. No Windows 10 usa acrílico; se nem isso houver, fundo sólido
+    /// (sem isso a janela ficaria transparente ou preta).
+    /// </summary>
+    private void ConfigureBackdrop()
+    {
+        if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
+        {
+            return; // o MicaBackdrop do XAML já vale
+        }
+
+        if (Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController.IsSupported())
+        {
+            SystemBackdrop = new Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop();
+        }
+        else
+        {
+            SystemBackdrop = null;
+            RootGrid.Background = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["SolidBackgroundFillColorBaseBrush"];
+        }
+    }
 
     private void BuildNavigation()
     {

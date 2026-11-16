@@ -47,6 +47,17 @@
                 <ToggleSwitch x:Name="AlwaysAdminToggle" Toggled="OnAlwaysAdminToggled" />
             </tk:SettingsCard>
 
+            <TextBlock Style="{StaticResource SectionHeaderStyle}" Text="Atualizações" />
+            <tk:SettingsCard x:Name="UpdateCard" Description="Procura versões novas no GitHub e baixa sozinho. Você escolhe a hora de reiniciar." Header="Atualizar automaticamente">
+                <tk:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE895;" />
+                </tk:SettingsCard.HeaderIcon>
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <Button x:Name="CheckUpdateButton" Click="OnCheckUpdate" Content="Procurar agora" />
+                    <ToggleSwitch x:Name="AutoUpdateToggle" Toggled="OnAutoUpdateToggled" />
+                </StackPanel>
+            </tk:SettingsCard>
+
             <TextBlock Style="{StaticResource SectionHeaderStyle}" Text="Sobre" />
             <tk:SettingsExpander x:Name="AboutCard" Description="Por blat0r · Rápido como um vapt vupt." Header="Vapt">
                 <tk:SettingsExpander.HeaderIcon>

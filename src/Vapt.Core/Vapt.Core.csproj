@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Management" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Debloat\apps.json" LogicalName="Vapt.Debloat.apps.json" />
   </ItemGroup>
 

@@ -31,7 +31,7 @@ public static class DebloatPreset
         async Task<List<Tweak>> Pending(TweakGroup group)
         {
             var list = new List<Tweak>();
-            foreach (var t in TweakCatalog.All.Where(t => t.Group == group && t.Risk == TweakRisk.Safe && (!t.NeedsAdmin || admin)))
+            foreach (var t in TweakCatalog.Available.Where(t => t.Group == group && t.Risk == TweakRisk.Safe && (!t.NeedsAdmin || admin)))
             {
                 if (!await TweakEngine.IsAppliedAsync(t))
                 {

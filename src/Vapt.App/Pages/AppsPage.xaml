@@ -34,6 +34,7 @@
                 <SelectorBarItem IsSelected="True" Text="Programas" />
                 <SelectorBarItem Text="Apps da Loja" />
                 <SelectorBarItem x:Name="UpdatesTab" Text="Atualizações" />
+                <SelectorBarItem x:Name="InstallTab" Text="Instalar" />
             </SelectorBar>
             <AutoSuggestBox
                 x:Name="SearchBox"
@@ -141,6 +142,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <ScrollViewer x:Name="InstallScroller" Padding="0,0,0,24" Visibility="Collapsed">
+                <StackPanel x:Name="InstallPanel" Spacing="{StaticResource SettingsCardSpacing}" />
+            </ScrollViewer>
             <ProgressRing x:Name="Ring" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="False" />
             <StackPanel x:Name="EmptyState" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Visibility="Collapsed">
                 <FontIcon FontSize="40" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Glyph="&#xE930;" />

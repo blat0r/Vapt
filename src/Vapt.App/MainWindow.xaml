@@ -59,7 +59,20 @@
             OpenPaneLength="260"
             PaneDisplayMode="Left"
             SelectionChanged="OnNavigationSelectionChanged">
-            <Frame x:Name="ContentFrame" Navigated="OnFrameNavigated" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!-- Versão nova baixada do GitHub. -->
+                <InfoBar
+                    x:Name="UpdateBar"
+                    Margin="36,12,36,0"
+                    IsClosable="True"
+                    Severity="Success"
+                    Title="Atualização pronta" />
+                <Frame x:Name="ContentFrame" Grid.Row="1" Navigated="OnFrameNavigated" />
+            </Grid>
         </NavigationView>
     </Grid>
 </Window>

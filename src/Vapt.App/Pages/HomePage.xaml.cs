@@ -329,7 +329,7 @@ public sealed partial class HomePage : Page
             var apps = await Task.Run(Core.Apps.InstalledApps.ListDesktop);
             _tileStats["apps"].Text = $"{apps.Count} programas";
             var applied = 0;
-            foreach (var t in Core.Tweaks.TweakCatalog.All.Where(t => t.IsAppliedCustom is null))
+            foreach (var t in Core.Tweaks.TweakCatalog.Available.Where(t => t.IsAppliedCustom is null))
             {
                 applied += await Core.Tweaks.TweakEngine.IsAppliedAsync(t) ? 1 : 0;
             }

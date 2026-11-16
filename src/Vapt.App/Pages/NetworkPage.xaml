@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.NetworkPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer Padding="{StaticResource PageContentPadding}">
+        <StackPanel MaxWidth="{StaticResource PageMaxWidth}" Margin="0,24,0,0" Spacing="12">
+            <StackPanel Spacing="4">
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Rede" />
+                <TextBlock
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{StaticResource BodyTextBlockStyle}"
+                    Text="Descubra por que o jogo está com lag: o teste mede o ping, a oscilação e a perda até o roteador e até a internet, além da velocidade. Leva uns 30 segundos."
+                    TextWrapping="Wrap" />
+            </StackPanel>
+
+            <Border Padding="24,20" Style="{StaticResource CardBorderStyle}">
+                <Grid ColumnSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Spacing="6">
+                        <TextBlock x:Name="VerdictText" Style="{StaticResource SubtitleTextBlockStyle}" Text="Pronto para testar" />
+                        <TextBlock
+                            x:Name="AdapterText"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Style="{StaticResource BodyTextBlockStyle}"
+                            Text="Feche downloads e streaming para o resultado ser justo."
+                            TextWrapping="Wrap" />
+                        <ProgressBar x:Name="Progress" Margin="0,6,0,0" Maximum="1" Visibility="Collapsed" />
+                    </StackPanel>
+                    <Button x:Name="RunButton" Grid.Column="1" MinWidth="150" VerticalAlignment="Center" Click="OnRun" Style="{StaticResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontSize="14" Glyph="&#xE774;" />
+                            <TextBlock x:Name="RunText" Text="Testar conexão" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <Grid x:Name="SpeedTiles" ColumnSpacing="8" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <StackPanel x:Name="Details" Spacing="{StaticResource SettingsCardSpacing}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

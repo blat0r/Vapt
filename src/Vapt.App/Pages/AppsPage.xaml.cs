@@ -105,15 +105,102 @@ public sealed partial class AppsPage : Page
         InitializeComponent();
         SortBox.SelectedIndex = 0;
         UpdatesTab.Visibility = WingetUpdates.Available ? Visibility.Visible : Visibility.Collapsed;
+        InstallTab.Visibility = WingetUpdates.Available ? Visibility.Visible : Visibility.Collapsed;
         Loaded += async (_, _) => await LoadAsync();
     }
 
+    private const int TabInstall = 3;
+
     private int Tab => Tabs.Items.IndexOf(Tabs.SelectedItem);
+
+    // ── Instalar (pós-formatação, pelo winget) ───────────────────────────
+
+    private readonly List<(EssentialApp App, CheckBox Check, Microsoft.UI.Xaml.Controls.Primitives.ButtonBase? State)> _install = [];
+
+    private void ShowInstall()
+    {
+        List.Visibility = Visibility.Collapsed;
+        InstallScroller.Visibility = Visibility.Visible;
+        SearchBox.Visibility = SortBox.Visibility = Visibility.Collapsed;
+        InstallPanel.Children.Clear();
+        _install.Clear();
+        var installed = EssentialApps.InstalledNames();
+        InstallPanel.Children.Add(new TextBlock
+        {
+            Text = "Os essenciais de depois de formatar, de uma vez. O winget baixa do site oficial de cada um e confere a assinatura do instalador.",
+            TextWrapping = TextWrapping.Wrap,
+            Margin = new Thickness(1, 0, 0, 4),
+            Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TextFillColorSecondaryBrush"],
+        });
+        foreach (var group in EssentialApps.Catalog.GroupBy(a => a.Category))
+        {
+            InstallPanel.Children.Add(new TextBlock { Text = group.Key, Style = (Style)Application.Current.Resources["SectionHeaderStyle"] });
+            foreach (var app in group)
+            {
+                var already = EssentialApps.IsInstalled(app, installed);
+                var check = new CheckBox { IsChecked = !already && app.PreSelect, IsEnabled = !already, MinWidth = 0, Margin = new Thickness(8, 0, -8, 0) };
+                check.Checked += (_, _) => UpdateActionBar();
+                check.Unchecked += (_, _) => UpdateActionBar();
+                var content = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 12 };
+                if (already)
+                {
+                    content.Children.Add(new TextBlock { Text = "Já instalado", VerticalAlignment = VerticalAlignment.Center, Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TextFillColorSecondaryBrush"] });
+                }
+
+                content.Children.Add(check);
+                var card = Ui.Card(app.Name, app.Description, "", content);
+                card.IsClickEnabled = !already;
+                card.IsActionIconVisible = false;
+                card.Click += (_, _) => check.IsChecked = check.IsChecked != true;
+                InstallPanel.Children.Add(card);
+                _install.Add((app, check, null));
+            }
+        }
+
+        UpdateActionBar();
+    }
+
+    private async Task InstallSelectedAsync()
+    {
+        var chosen = _install.Where(i => i.Check.IsChecked == true).ToList();
+        if (chosen.Count == 0)
+        {
+            return;
+        }
+
+        var failed = new List<string>();
+        var n = 0;
+        foreach (var (app, check, _) in chosen)
+        {
+            n++;
+            SetBusy(true, $"Instalando {n} de {chosen.Count}: {app.Name}…");
+            if (!await EssentialApps.InstallAsync(app))
+            {
+                failed.Add(app.Name);
+            }
+        }
+
+        SetBusy(false);
+        _desktop = [];
+        ShowInstall();
+        await Ui.InfoAsync(XamlRoot, "Instalação", failed.Count == 0
+            ? $"{chosen.Count} {(chosen.Count == 1 ? "app instalado" : "apps instalados")}."
+            : $"{chosen.Count - failed.Count} instalados; não deu: {string.Join(", ", failed)}. Tente de novo ou baixe do site oficial.");
+    }
 
     // ── Carregar ─────────────────────────────────────────────────────────
 
     private async Task LoadAsync(bool force = false)
     {
+        if (Tab == TabInstall)
+        {
+            ShowInstall();
+            return;
+        }
+
+        List.Visibility = Visibility.Visible;
+        InstallScroller.Visibility = Visibility.Collapsed;
+        SearchBox.Visibility = SortBox.Visibility = Visibility.Visible;
         Ring.IsActive = true;
         EmptyState.Visibility = Visibility.Collapsed;
         try
@@ -212,6 +299,17 @@ public sealed partial class AppsPage : Page
     {
         SelectToggle.Visibility = Tab == TabPrograms ? Visibility.Visible : Visibility.Collapsed;
         SilentCheck.Visibility = Tab == TabPrograms ? Visibility.Visible : Visibility.Collapsed;
+        if (Tab == TabInstall)
+        {
+            var count = _install.Count(i => i.Check.IsChecked == true);
+            ActionBar.Visibility = Visibility.Visible;
+            ActionText.Text = count == 0 ? "Marque o que quer instalar" : $"{count} {(count == 1 ? "app selecionado" : "apps selecionados")}";
+            ActionDetail.Text = "Instalam em silêncio, um depois do outro. Alguns pedem permissão de administrador.";
+            ActionButton.Content = count == 0 ? "Instalar" : $"Instalar {count}";
+            ActionButton.IsEnabled = count > 0 && !_busy;
+            return;
+        }
+
         if (Tab == TabUpdates && _updates is { Count: > 0 } updates)
         {
             ActionBar.Visibility = Visibility.Visible;
@@ -338,7 +436,11 @@ public sealed partial class AppsPage : Page
             return;
         }
 
-        if (Tab == TabUpdates && _updates is { Count: > 0 } updates)
+        if (Tab == TabInstall)
+        {
+            await InstallSelectedAsync();
+        }
+        else if (Tab == TabUpdates && _updates is { Count: > 0 } updates)
         {
             await UpdateAsync(updates);
         }

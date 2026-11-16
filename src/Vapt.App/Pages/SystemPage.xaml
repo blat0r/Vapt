@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.SystemPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid MaxWidth="{StaticResource PageMaxWidth}" Margin="36,24,36,8" RowSpacing="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Meu PC" />
+            <TextBlock
+                Grid.Row="1"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Style="{StaticResource BodyTextBlockStyle}"
+                Text="A ficha do seu computador: peças, saúde dos discos e da bateria."
+                TextWrapping="Wrap" />
+            <Button
+                x:Name="ExportButton"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Click="OnExport"
+                IsEnabled="False">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon FontSize="14" Glyph="&#xEDE1;" />
+                    <TextBlock Text="Exportar relatório" />
+                </StackPanel>
+            </Button>
+            <SelectorBar x:Name="Tabs" Grid.Row="2" Grid.ColumnSpan="2" Margin="-12,8,0,0" SelectionChanged="OnTabChanged">
+                <SelectorBarItem IsSelected="True" Text="Resumo" />
+                <SelectorBarItem Text="Discos" />
+                <SelectorBarItem x:Name="BatteryTab" Text="Bateria" Visibility="Collapsed" />
+            </SelectorBar>
+        </Grid>
+
+        <ScrollViewer x:Name="Scroller" Grid.Row="1" Padding="36,0,36,36">
+            <Grid MaxWidth="{StaticResource PageMaxWidth}">
+                <ProgressRing x:Name="Ring" Margin="0,48,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" IsActive="True" />
+                <StackPanel x:Name="SummaryPanel" Spacing="12" />
+                <StackPanel x:Name="DisksPanel" Spacing="{StaticResource SettingsCardSpacing}" Visibility="Collapsed" />
+                <StackPanel x:Name="BatteryPanel" Spacing="12" Visibility="Collapsed" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

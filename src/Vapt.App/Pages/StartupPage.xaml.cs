@@ -41,6 +41,43 @@ public sealed partial class StartupPage : Page
         {
             List.Children.Add(BuildCard(entry));
         }
+
+        // Removidos pelo Vapt: dá para voltar.
+        var removed = StartupManager.Removed();
+        if (removed.Count > 0)
+        {
+            var expander = new CommunityToolkit.WinUI.Controls.SettingsExpander
+            {
+                Header = "Removidos pelo Vapt",
+                Description = $"{removed.Count} {(removed.Count == 1 ? "item" : "itens")} que você tirou da inicialização. Restaure se fez falta.",
+                HeaderIcon = new FontIcon { Glyph = "" },
+                Margin = new Thickness(0, 20, 0, 0),
+            };
+            foreach (var r in removed.OrderByDescending(r => r.When))
+            {
+                var restore = new Button { Content = "Restaurar", IsEnabled = r.Source is StartupSource.UserRun or StartupSource.UserFolder || Elevation.IsAdministrator };
+                restore.Click += (_, _) =>
+                {
+                    try
+                    {
+                        StartupManager.Restore(r);
+                        Load();
+                    }
+                    catch (Exception ex) when (ex is UnauthorizedAccessException or IOException or System.Security.SecurityException)
+                    {
+                        _ = Ui.InfoAsync(XamlRoot, "Não foi possível restaurar", ex.Message);
+                    }
+                };
+                expander.Items.Add(new CommunityToolkit.WinUI.Controls.SettingsCard
+                {
+                    Header = r.Name,
+                    Description = $"Removido em {r.When:dd/MM/yyyy HH:mm} · {r.Command}",
+                    Content = restore,
+                });
+            }
+
+            List.Children.Add(expander);
+        }
     }
 
     private FrameworkElement BuildCard(StartupEntry entry)

@@ -115,9 +115,73 @@ public static class StartupManager
         Log.Info($"Inicialização: {entry.Name} {(enabled ? "ligado" : "desligado")}.");
     }
 
-    /// <summary>Tira o item da inicialização de vez (apaga o valor do registro ou o atalho).</summary>
+    public sealed record RemovedEntry(string Name, string Command, StartupSource Source, string? BackupFile, DateTime When);
+
+    private static string RemovedFile => Path.Combine(AppPaths.DataDirectory, "startup-removed.json");
+
+    private static string BackupFolder => Path.Combine(AppPaths.DataDirectory, "startup-backup");
+
+    public static IReadOnlyList<RemovedEntry> Removed()
+    {
+        try
+        {
+            return File.Exists(RemovedFile)
+                ? System.Text.Json.JsonSerializer.Deserialize<List<RemovedEntry>>(File.ReadAllText(RemovedFile)) ?? []
+                : [];
+        }
+        catch (Exception ex) when (ex is IOException or System.Text.Json.JsonException)
+        {
+            return [];
+        }
+    }
+
+    private static void SaveRemoved(List<RemovedEntry> list)
+    {
+        Directory.CreateDirectory(AppPaths.DataDirectory);
+        File.WriteAllText(RemovedFile, System.Text.Json.JsonSerializer.Serialize(list));
+    }
+
+    /// <summary>Volta um item removido para a inicialização (como estava).</summary>
+    public static void Restore(RemovedEntry removed)
+    {
+        switch (removed.Source)
+        {
+            case StartupSource.UserFolder or StartupSource.CommonFolder:
+                if (removed.BackupFile is { } backup && File.Exists(backup))
+                {
+                    File.Copy(backup, removed.Command, overwrite: true);
+                }
+
+                break;
+            default:
+                var root = removed.Source == StartupSource.UserRun ? Registry.CurrentUser : Registry.LocalMachine;
+                using (var key = root.CreateSubKey(removed.Source == StartupSource.MachineRun32 ? Run32 : Run, writable: true))
+                {
+                    key.SetValue(removed.Name, removed.Command, RegistryValueKind.String);
+                }
+
+                break;
+        }
+
+        SaveRemoved(Removed().Where(r => !(r.Name == removed.Name && r.Source == removed.Source)).ToList());
+        Log.Info($"Inicialização: {removed.Name} restaurado.");
+    }
+
+    /// <summary>Tira o item da inicialização (com cópia para "Restaurar removidos").</summary>
     public static void Remove(StartupEntry entry)
     {
+        string? backup = null;
+        if (entry.Source is StartupSource.UserFolder or StartupSource.CommonFolder && File.Exists(entry.Command))
+        {
+            Directory.CreateDirectory(BackupFolder);
+            backup = Path.Combine(BackupFolder, $"{DateTime.Now:yyyyMMddHHmmss}-{Path.GetFileName(entry.Command)}");
+            File.Copy(entry.Command, backup, overwrite: true);
+        }
+
+        var list = Removed().ToList();
+        list.Add(new RemovedEntry(entry.Name, entry.Command, entry.Source, backup, DateTime.Now));
+        SaveRemoved(list);
+
         switch (entry.Source)
         {
             case StartupSource.UserFolder or StartupSource.CommonFolder:

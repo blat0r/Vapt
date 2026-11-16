@@ -38,6 +38,9 @@ public sealed partial class TreemapView : UserControl
     private DateTime _zoomStart;
     private const double ZoomMs = 220;
 
+    /// <summary>"Segoe UI Variable" só existe no Windows 11; no 10 a fonte do sistema é a Segoe UI.</summary>
+    private static readonly string MapFont = Core.SystemInfo.IsWindows11 ? "Segoe UI Variable Text" : "Segoe UI";
+
     public TreemapView()
     {
         _canvas = new CanvasControl { ClearColor = Colors.Transparent };
@@ -217,7 +220,7 @@ public sealed partial class TreemapView : UserControl
         var palette = new Palette(dark);
         using var headerFormat = new CanvasTextFormat
         {
-            FontFamily = "Segoe UI Variable Text",
+            FontFamily = MapFont,
             FontSize = 11.5f,
             FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
             WordWrapping = CanvasWordWrapping.NoWrap,
@@ -226,7 +229,7 @@ public sealed partial class TreemapView : UserControl
         };
         using var nameFormat = new CanvasTextFormat
         {
-            FontFamily = "Segoe UI Variable Text",
+            FontFamily = MapFont,
             FontSize = 11.5f,
             WordWrapping = CanvasWordWrapping.NoWrap,
             TrimmingGranularity = CanvasTextTrimmingGranularity.Character,

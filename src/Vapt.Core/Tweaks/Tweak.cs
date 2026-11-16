@@ -62,6 +62,11 @@ public sealed class Tweak
 
     public bool RequiresReboot { get; init; }
 
+    /// <summary>Build mínimo do Windows em que a otimização existe (22000 = só Windows 11).</summary>
+    public int MinBuild { get; init; }
+
+    public bool AvailableHere => SystemInfo.Build >= MinBuild;
+
     /// <summary>Para otimizações por comando: se precisam de administrador (padrão: sim).</summary>
     public bool CustomNeedsAdmin { get; init; } = true;
 

@@ -29,6 +29,9 @@ public sealed class Settings
 
     public string? LastScanPath { get; set; }
 
+    /// <summary>Procura e baixa versões novas no GitHub sozinho.</summary>
+    public bool AutoUpdate { get; set; } = true;
+
     /// <summary>Pede administrador (UAC) toda vez que o Vapt abre.</summary>
     public bool AlwaysAdmin { get; set; }
 

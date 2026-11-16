@@ -83,7 +83,7 @@ public sealed partial class DebloatPage : Page
                 break;
             case TabAds:
                 AdsPanel.Children.Add(Intro("Propagandas e sugestões que o Windows, o Iniciar, a pesquisa e o Edge mostram. Desligar não tira nenhuma função."));
-                AdsPanel.Children.Add(new TweakList(TweakCatalog.All.Where(t => t.Group == TweakGroup.Ads), StatusBar, groupHeaders: false));
+                AdsPanel.Children.Add(new TweakList(TweakCatalog.Available.Where(t => t.Group == TweakGroup.Ads), StatusBar, groupHeaders: false));
                 break;
             case TabPrivacy:
                 await BuildPrivacyAsync();
@@ -180,7 +180,7 @@ public sealed partial class DebloatPage : Page
         CategoryCards.Children.Clear();
         async Task<string> Applied(TweakGroup g)
         {
-            var all = TweakCatalog.All.Where(t => t.Group == g).ToList();
+            var all = TweakCatalog.Available.Where(t => t.Group == g).ToList();
             var on = 0;
             foreach (var t in all)
             {
@@ -441,7 +441,7 @@ public sealed partial class DebloatPage : Page
     private async Task BuildPrivacyAsync()
     {
         PrivacyPanel.Children.Add(Intro("O que o Windows coleta sobre você e manda para a Microsoft. Nada aqui tira função do dia a dia."));
-        PrivacyPanel.Children.Add(new TweakList(TweakCatalog.All.Where(t => t.Group == TweakGroup.Privacy), StatusBar, groupHeaders: false));
+        PrivacyPanel.Children.Add(new TweakList(TweakCatalog.Available.Where(t => t.Group == TweakGroup.Privacy), StatusBar, groupHeaders: false));
 
         PrivacyPanel.Children.Add(new TextBlock { Text = "Coleta em segundo plano", Style = S("SectionHeaderStyle") });
         foreach (var s in DebloatCatalog.Services.Where(s => s.Kind == ServiceKind.Telemetry))
@@ -473,7 +473,7 @@ public sealed partial class DebloatPage : Page
             RecallText.Text = "O Recall só vem em PCs Copilot+ (com NPU). Mesmo assim, as políticas abaixo impedem que ele seja instalado por uma atualização futura e tiram as outras IAs do Windows e dos navegadores.";
         }
 
-        AiPanel.Children.Add(new TweakList(TweakCatalog.All.Where(t => t.Group == TweakGroup.AI), StatusBar, groupHeaders: false));
+        AiPanel.Children.Add(new TweakList(TweakCatalog.Available.Where(t => t.Group == TweakGroup.AI), StatusBar, groupHeaders: false));
         foreach (var s in DebloatCatalog.Services.Where(s => s.Kind == ServiceKind.AI))
         {
             AddServiceCard(AiPanel, s);
