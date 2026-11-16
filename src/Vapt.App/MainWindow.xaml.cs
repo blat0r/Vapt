@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using Vapt.Core;
+using Vapt.Core.Perf;
 using Vapt.Pages;
 
 namespace Vapt;
@@ -28,7 +29,19 @@ public sealed partial class MainWindow : Window
         ("network", "Rede", "", typeof(NetworkPage)),
         ("usb", "Pendrive", "", typeof(UsbPage)),
         ("repair", "Reparar", "", typeof(RepairPage)),
+        // Grupo "Desempenho" (vira um item que expande no menu).
+        ("sensors", "Sensores", "", typeof(SensorsPage)),
+        ("bench", "Benchmark", "", typeof(BenchPage)),
+        ("stress", "Stress test", "", typeof(StressPage)),
+        ("oc", "Overclock", "", typeof(OverclockPage)),
+        ("overlay", "Overlay de FPS", "", typeof(OverlayPage)),
     ];
+
+    private static readonly HashSet<string> PerfTags = ["sensors", "bench", "stress", "oc", "overlay"];
+
+    /// <summary>Todos os itens do menu, inclusive os de dentro de grupos.</summary>
+    private IEnumerable<NavigationViewItem> AllItems() =>
+        NavView.MenuItems.OfType<NavigationViewItem>().SelectMany(i => i.MenuItems.OfType<NavigationViewItem>().Prepend(i));
 
     private bool _syncingSelection;
     private string _currentTag = "home";
@@ -51,7 +64,16 @@ public sealed partial class MainWindow : Window
         _uiSettings.ColorValuesChanged += (_, _) => DispatcherQueue.TryEnqueue(ApplyTheme);
 
         // Atualização automática: alguns segundos depois de abrir e a cada 6 horas.
-        Closed += (_, _) => Updater.ApplyOnExitIfReady();
+        Closed += (_, _) =>
+        {
+            GameOverlay.Stop(); // fecha também a sessão de medição de FPS do Windows
+            Updater.ApplyOnExitIfReady();
+        };
+        GameOverlay.Options = App.Settings.Overlay;
+        if (App.Settings.OverlayAtStart || Environment.GetCommandLineArgs().Contains("--overlay"))
+        {
+            GameOverlay.Start();
+        }
         if (App.Settings.AutoUpdate)
         {
             _ = CheckUpdatesSoonAsync();
@@ -117,6 +139,7 @@ public sealed partial class MainWindow : Window
 
     private void BuildNavigation()
     {
+        NavigationViewItem? perf = null;
         foreach (var (tag, name, glyph, _) in Sections)
         {
             if (tag == "disk")
@@ -124,12 +147,32 @@ public sealed partial class MainWindow : Window
                 NavView.MenuItems.Add(new NavigationViewItemHeader { Content = "Ferramentas" });
             }
 
-            NavView.MenuItems.Add(new NavigationViewItem
+            var item = new NavigationViewItem
             {
                 Content = name,
                 Tag = tag,
                 Icon = new FontIcon { Glyph = glyph },
-            });
+            };
+            if (PerfTags.Contains(tag))
+            {
+                if (perf is null)
+                {
+                    perf = new NavigationViewItem
+                    {
+                        Content = "Desempenho",
+                        Tag = "perf",
+                        Icon = new FontIcon { Glyph = "" },
+                        SelectsOnInvoked = false,
+                    };
+                    NavView.MenuItems.Add(perf);
+                }
+
+                perf.MenuItems.Add(item);
+            }
+            else
+            {
+                NavView.MenuItems.Add(item);
+            }
         }
 
         if (NavView.SettingsItem is NavigationViewItem settingsItem)
@@ -164,10 +207,15 @@ public sealed partial class MainWindow : Window
             return;
         }
 
-        var item = NavView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(i => (string)i.Tag == tag)
+        var item = AllItems().FirstOrDefault(i => (string)i.Tag == tag)
             ?? (tag == SettingsTag ? NavView.SettingsItem as NavigationViewItem : null);
         if (item is not null)
         {
+            if (PerfTags.Contains(tag) && AllItems().FirstOrDefault(i => (string)i.Tag == "perf") is { } group)
+            {
+                group.IsExpanded = true;
+            }
+
             NavView.SelectedItem = item;
         }
     }
@@ -185,6 +233,11 @@ public sealed partial class MainWindow : Window
         }
 
         var tag = args.IsSettingsSelected ? SettingsTag : (args.SelectedItemContainer?.Tag as string ?? "home");
+        if (tag == "perf")
+        {
+            return; // o grupo só abre e fecha
+        }
+
         var pageType = PageFor(tag);
         if (ContentFrame.CurrentSourcePageType == pageType)
         {

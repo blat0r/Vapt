@@ -61,6 +61,11 @@ Limpeza, debloat, Recall, mapa do disco, pendrive de boot e reparo num app só, 
 | **Rede** | Teste de lag: ping, oscilação e perda até o roteador e a internet, DNS, velocidade e ping com a linha cheia. Diz se o problema é o Wi-Fi ou o provedor. |
 | **Pendrive** | Formatar e criar pendrive de boot (Windows ou Linux), com verificação. |
 | **Reparar** | SFC, DISM, cache de ícones, rede, DNS (Cloudflare, Google, Quad9, AdGuard) e plano de energia. |
+| **Desempenho → Sensores** | Temperatura, clock, uso, consumo, ventoinhas e voltagens de cada peça, ao vivo, com mínimo e máximo. |
+| **Desempenho → Overlay de FPS** | FPS, tempo de quadro, 1% low, GPU e CPU por cima do jogo (Ctrl+Shift+O). Mede pelo Windows, sem injetar nada. |
+| **Desempenho → Benchmark** | Processador (ray tracing, multi e single-core) e placa de vídeo (cena 3D em Direct3D 11), com histórico. |
+| **Desempenho → Stress test** | CPU e GPU no máximo com limite de temperatura, gráfico ao vivo e checagem de erros de hardware. |
+| **Desempenho → Overclock** | NVIDIA: limite de energia e faixa de clock (undervolt fácil), com restaurar. Guia de BIOS para CPU e RAM. |
 
 ## Instalar
 
@@ -92,7 +97,7 @@ dotnet test tests\Vapt.Core.Tests          # testes
 .\scripts\pack.ps1                         # instalador em artifacts\releases
 ```
 
-Argumentos: `--page <home|system|cleanup|tweaks|startup|apps|debloat|disk|duplicates|network|usb|repair|settings>`, `--scan <pasta>`, `--dupes <pasta>`, `--tab <n>` (Debloat), `--smoke` (monta todas as páginas e sai).
+Argumentos: `--page <home|system|cleanup|tweaks|startup|apps|debloat|disk|duplicates|network|usb|repair|sensors|bench|stress|oc|overlay|settings>`, `--scan <pasta>`, `--dupes <pasta>`, `--tab <n>` (Debloat), `--overlay` (liga o overlay), `--smoke` (monta todas as páginas e sai). Teste do renderizador 3D (abre uma janela): `$env:VAPT_GPU_TEST=1; dotnet test`.
 
 **Publicar uma versão:** mude o `<Version>` em `Directory.Build.props`, escreva as novidades em `docs/notas/vX.Y.Z.md` e crie a tag. O GitHub Actions ([publicar.yml](.github/workflows/publicar.yml)) testa, gera o instalador com atualização delta e publica a Release; o Vapt de todo mundo atualiza sozinho.
 
@@ -119,6 +124,7 @@ git push origin v1.2.0
 
 - Lista de apps do Debloat: [Win11Debloat](https://github.com/Raphire/Win11Debloat) (MIT).
 - Meu PC, teste de disco e de rede, instalar apps e Turbo para jogar foram inspirados no [ResetExplode](https://github.com/GustavoReset/ResetExplode) (MIT).
+- Sensores pelo [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor) (MPL-2.0); FPS pelo [TraceEvent](https://github.com/microsoft/perfview) (MIT); 3D pelo [Vortice](https://github.com/amerkoleci/Vortice.Windows) (MIT).
 - Ajustes conferidos com o [WinUtil](https://github.com/ChrisTitusTech/winutil) e o [privacy.sexy](https://github.com/undergroundwires/privacy.sexy).
 - A pesquisa por trás das escolhas está em [reports/](reports/Otimizadores%20de%20PC%20para%20o%20Vapt.md). Avisos completos em [NOTICE.md](NOTICE.md).
 

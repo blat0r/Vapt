@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0-windows</TargetFramework>
@@ -11,7 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Management" Version="10.0.0" />
+    <PackageReference Include="System.Management" Version="10.0.2" />
+    <!-- Sensores (MPL-2.0). CPU precisa do driver PawnIO; GPU e discos funcionam sem ele. -->
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.6" />
+    <!-- FPS dos jogos por ETW (eventos Present do DXGI/D3D9), como o PresentMon. -->
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.2.8" />
+    <!-- Direct3D 11 para o benchmark 3D e o stress de GPU. -->
+    <PackageReference Include="Vortice.Direct3D11" Version="3.8.3" />
+    <PackageReference Include="Vortice.D3DCompiler" Version="3.8.3" />
+    <PackageReference Include="Vortice.DXGI" Version="3.8.3" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,3 +28,4 @@
   </ItemGroup>
 
 </Project>
+

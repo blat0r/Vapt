@@ -32,6 +32,12 @@ public sealed class Settings
     /// <summary>Procura e baixa versões novas no GitHub sozinho.</summary>
     public bool AutoUpdate { get; set; } = true;
 
+    /// <summary>O que aparece no overlay de FPS.</summary>
+    public Perf.OverlayOptions Overlay { get; set; } = new();
+
+    /// <summary>Liga o overlay sozinho quando o Vapt abre.</summary>
+    public bool OverlayAtStart { get; set; }
+
     /// <summary>Pede administrador (UAC) toda vez que o Vapt abre.</summary>
     public bool AlwaysAdmin { get; set; }
 

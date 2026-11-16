@@ -57,3 +57,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ```
+
+## Bibliotecas da seção Desempenho
+
+- **[LibreHardwareMonitorLib](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)** (MPL-2.0): leitura dos sensores. Usada sem modificação, como pacote NuGet; o código-fonte está no link.
+- **[Microsoft.Diagnostics.Tracing.TraceEvent](https://github.com/microsoft/perfview)** (MIT): eventos ETW para medir o FPS.
+- **[Vortice.Windows](https://github.com/amerkoleci/Vortice.Windows)** (MIT): Direct3D 11 do benchmark 3D e do stress de GPU.
+- **PawnIO** (driver opcional, instalado pelo winget a pedido do usuário): acesso aos sensores do processador.

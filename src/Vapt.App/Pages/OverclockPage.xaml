@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vapt.Pages.OverclockPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:tk="using:CommunityToolkit.WinUI.Controls">
+
+    <ScrollViewer Padding="{StaticResource PageContentPadding}">
+        <StackPanel x:Name="Body" MaxWidth="{StaticResource PageMaxWidth}" Margin="0,24,0,0" Spacing="{StaticResource SettingsCardSpacing}">
+            <StackPanel Margin="0,0,0,8" Spacing="4">
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Overclock" />
+                <TextBlock
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{StaticResource BodyTextBlockStyle}"
+                    Text="Mais desempenho ou menos calor e barulho. Na placa de vídeo NVIDIA dá para ajustar daqui; processador e memória se ajustam na BIOS, com o guia abaixo."
+                    TextWrapping="Wrap" />
+            </StackPanel>
+
+            <InfoBar x:Name="StatusBar" IsClosable="True" />
+
+            <!-- GPU NVIDIA -->
+            <StackPanel x:Name="NvidiaPanel" Spacing="{StaticResource SettingsCardSpacing}">
+                <TextBlock Style="{StaticResource SectionHeaderStyle}" Text="Placa de vídeo" />
+                <Border Padding="20" Style="{StaticResource CardBorderStyle}">
+                    <StackPanel Spacing="10">
+                        <TextBlock x:Name="GpuName" Style="{StaticResource SubtitleTextBlockStyle}" />
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="Núcleo" />
+                                <TextBlock x:Name="CoreText" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="Memória" />
+                                <TextBlock x:Name="MemText" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="Consumo" />
+                                <TextBlock x:Name="PowerText" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="Temperatura" />
+                                <TextBlock x:Name="TempText" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="4">
+                                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource CaptionTextBlockStyle}" Text="Segurando o clock" />
+                                <TextBlock x:Name="CapText" Style="{StaticResource BodyStrongTextBlockStyle}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <tk:SettingsExpander x:Name="PowerCard" Description="Mais watts = clock mais alto por mais tempo (e mais calor). Menos watts = mais fria e silenciosa, perdendo pouco FPS." Header="Limite de energia" IsExpanded="True">
+                    <tk:SettingsExpander.HeaderIcon>
+                        <FontIcon Glyph="&#xE945;" />
+                    </tk:SettingsExpander.HeaderIcon>
+                    <TextBlock x:Name="PowerValue" VerticalAlignment="Center" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                    <tk:SettingsExpander.ItemsHeader>
+                        <Grid Padding="56,8,16,12" ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Slider x:Name="PowerSlider" StepFrequency="1" ValueChanged="OnPowerSlider" />
+                            <Button x:Name="PowerApply" Grid.Column="1" Click="OnApplyPower" Content="Aplicar" Style="{StaticResource AccentButtonStyle}" />
+                        </Grid>
+                    </tk:SettingsExpander.ItemsHeader>
+                </tk:SettingsExpander>
+
+                <tk:SettingsExpander x:Name="ClockCard" Description="Trava o núcleo numa faixa de MHz. Um teto um pouco abaixo do máximo é o &quot;undervolt fácil&quot;: a placa esquenta bem menos e quase não perde FPS." Header="Faixa de clock do núcleo">
+                    <tk:SettingsExpander.HeaderIcon>
+                        <FontIcon Glyph="&#xE916;" />
+                    </tk:SettingsExpander.HeaderIcon>
+                    <tk:SettingsExpander.ItemsHeader>
+                        <StackPanel Padding="56,8,16,12" Orientation="Horizontal" Spacing="12">
+                            <NumberBox x:Name="ClockMin" Header="Mínimo (MHz)" Minimum="200" Maximum="3500" SmallChange="15" SpinButtonPlacementMode="Inline" Width="170" />
+                            <NumberBox x:Name="ClockMax" Header="Máximo (MHz)" Minimum="300" Maximum="3500" SmallChange="15" SpinButtonPlacementMode="Inline" Width="170" />
+                            <Button VerticalAlignment="Bottom" Click="OnApplyClock" Content="Travar" Style="{StaticResource AccentButtonStyle}" />
+                        </StackPanel>
+                    </tk:SettingsExpander.ItemsHeader>
+                </tk:SettingsExpander>
+
+                <tk:SettingsCard Description="Tudo de volta ao padrão de fábrica. Reiniciar o PC também desfaz (é uma rede de segurança)." Header="Restaurar a placa">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE7A7;" />
+                    </tk:SettingsCard.HeaderIcon>
+                    <Button Click="OnReset" Content="Restaurar padrão" />
+                </tk:SettingsCard>
+                <tk:SettingsCard Description="Roda CPU e GPU no máximo e confere no log do Windows se houve erro de hardware ou travamento do driver de vídeo." Header="Verificar estabilidade" IsClickEnabled="True" Click="OnStability">
+                    <tk:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE9D5;" />
+                    </tk:SettingsCard.HeaderIcon>
+                </tk:SettingsCard>
+            </StackPanel>
+
+            <InfoBar
+                x:Name="NoNvidia"
+                IsClosable="False"
+                Message="O ajuste por aqui funciona em placas NVIDIA (pelo driver oficial). Em placas AMD use o AMD Software: Adrenalin (Desempenho → Ajuste); em Intel Arc, o Intel Graphics Software."
+                Severity="Informational"
+                Title="Placa de vídeo sem ajuste por aqui"
+                Visibility="Collapsed" />
+
+            <!-- Guia de BIOS -->
+            <TextBlock Style="{StaticResource SectionHeaderStyle}" Text="Processador e memória (na BIOS)" />
+            <StackPanel x:Name="Guide" Spacing="{StaticResource SettingsCardSpacing}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
