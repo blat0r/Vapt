@@ -58,6 +58,25 @@ public partial class App : Application
         }
 
         _window.Activate();
+        InstallPawnIoOnce();
+    }
+
+    /// <summary>
+    /// Primeira vez que abre (instalação nova ou atualização): instala o driver PawnIO sozinho,
+    /// para a temperatura e o consumo do processador aparecerem sem ninguém precisar clicar em nada.
+    /// </summary>
+    private static async void InstallPawnIoOnce()
+    {
+        if (Settings.PawnIoAutoTried || Core.Perf.SensorHub.PawnIoInstalled)
+        {
+            return;
+        }
+
+        Settings.PawnIoAutoTried = true;
+        Settings.Save();
+        await Task.Delay(TimeSpan.FromSeconds(2)); // deixa a janela aparecer antes do UAC
+        var ok = await Core.Perf.SensorHub.InstallPawnIoAsync();
+        Log.Info($"PawnIO automático: {(ok ? "instalado" : "não instalado")}");
     }
 
     /// <summary>

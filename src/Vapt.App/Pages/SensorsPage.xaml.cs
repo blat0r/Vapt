@@ -134,6 +134,19 @@ public sealed partial class SensorsPage : Page
         }
     }
 
+    /// <summary>A roda do mouse rola os filtros para o lado quando eles não cabem na largura.</summary>
+    private void OnFilterWheel(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+    {
+        if (FilterScroll.ScrollableWidth <= 0)
+        {
+            return;
+        }
+
+        var delta = e.GetCurrentPoint(FilterScroll).Properties.MouseWheelDelta;
+        FilterScroll.ChangeView(FilterScroll.HorizontalOffset - delta, null, null, disableAnimation: false);
+        e.Handled = true;
+    }
+
     private void OnUpdated() => DispatcherQueue.TryEnqueue(Refresh);
 
     private void Refresh()

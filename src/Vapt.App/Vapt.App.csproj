@@ -43,6 +43,8 @@
   <ItemGroup>
     <Content Include="..\..\assets\Vapt.ico" Link="Assets\Vapt.ico" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\assets\Vapt.png" Link="Assets\Vapt.png" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Driver dos sensores da CPU (GPL-2.0, github.com/namazso/PawnIO.Setup 2.2.0), instalado sozinho na 1ª abertura. -->
+    <Content Include="..\..\assets\PawnIO_setup.exe" Link="PawnIO_setup.exe" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

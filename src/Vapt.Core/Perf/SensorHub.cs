@@ -329,9 +329,40 @@ public static class SensorHub
         return null;
     }
 
-    /// <summary>Instala o PawnIO pelo winget (pede administrador ao instalar).</summary>
+    /// <summary>
+    /// Instala o PawnIO em silêncio pelo instalador oficial que vem junto com o Vapt
+    /// (PawnIO_setup.exe -install -silent). Pede administrador (UAC) se o Vapt não estiver elevado.
+    /// Sem o instalador ao lado do exe, tenta pelo winget.
+    /// </summary>
     public static async Task<bool> InstallPawnIoAsync()
     {
+        var setup = Path.Combine(AppContext.BaseDirectory, "PawnIO_setup.exe");
+        if (File.Exists(setup))
+        {
+            try
+            {
+                using var p = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(setup, "-install -silent")
+                {
+                    UseShellExecute = true,
+                    Verb = "runas",
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                });
+                if (p is null)
+                {
+                    return PawnIoInstalled;
+                }
+
+                await p.WaitForExitAsync();
+                Log.Info($"PawnIO: instalador código {p.ExitCode}");
+                return p.ExitCode is 0 or 3010 || PawnIoInstalled; // 3010 = instalado, reiniciar depois
+            }
+            catch (System.ComponentModel.Win32Exception ex)
+            {
+                Log.Info($"PawnIO: instalação cancelada ({ex.Message})"); // UAC recusado
+                return false;
+            }
+        }
+
         if (Apps.WingetUpdates.WingetPath is not { } winget)
         {
             return false;

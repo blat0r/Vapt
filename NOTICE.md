@@ -34,4 +34,4 @@ SOFTWARE.
 - **[LibreHardwareMonitorLib](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)** (MPL-2.0): leitura dos sensores. Usada sem modificação, como pacote NuGet; o código-fonte está no link.
 - **[Microsoft.Diagnostics.Tracing.TraceEvent](https://github.com/microsoft/perfview)** (MIT): eventos ETW para medir o FPS.
 - **[Vortice.Windows](https://github.com/amerkoleci/Vortice.Windows)** (MIT): Direct3D 11 do benchmark 3D e do stress de GPU.
-- **PawnIO** (driver opcional, instalado pelo winget a pedido do usuário): acesso aos sensores do processador.
+- **PawnIO** 2.2.0, © namazso, [GPL-2.0](https://github.com/namazso/PawnIO.Setup/blob/main/LICENSE): driver que dá acesso aos sensores do processador. O instalador oficial (`PawnIO_setup.exe`, sem alterações, SHA-256 `1f519a22e47187f70a1379a48ca604981c4fcf694f4e65b734aaa74a9fba3032`) vai junto com o Vapt e roda na primeira abertura. Código-fonte: [namazso/PawnIO](https://github.com/namazso/PawnIO) e [namazso/PawnIO.Setup](https://github.com/namazso/PawnIO.Setup/releases/tag/2.2.0). Para remover: Configurações do Windows → Aplicativos → PawnIO.

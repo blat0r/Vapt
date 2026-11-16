@@ -34,7 +34,16 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="Filters" Orientation="Horizontal" Spacing="6" />
+                <ScrollViewer
+                    x:Name="FilterScroll"
+                    Padding="0,0,0,10"
+                    HorizontalScrollBarVisibility="Auto"
+                    HorizontalScrollMode="Enabled"
+                    PointerWheelChanged="OnFilterWheel"
+                    VerticalScrollBarVisibility="Disabled"
+                    VerticalScrollMode="Disabled">
+                    <StackPanel x:Name="Filters" Orientation="Horizontal" Spacing="6" />
+                </ScrollViewer>
                 <AutoSuggestBox
                     x:Name="SearchBox"
                     Grid.Column="1"

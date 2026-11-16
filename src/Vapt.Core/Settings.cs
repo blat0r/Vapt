@@ -41,6 +41,9 @@ public sealed class Settings
     /// <summary>Pede administrador (UAC) toda vez que o Vapt abre.</summary>
     public bool AlwaysAdmin { get; set; }
 
+    /// <summary>Já tentou instalar o PawnIO sozinho (só tenta uma vez; depois fica o botão em Sensores).</summary>
+    public bool PawnIoAutoTried { get; set; }
+
     public static Settings Load()
     {
         try
