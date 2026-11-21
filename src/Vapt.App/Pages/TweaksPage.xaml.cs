@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Vapt.Controls;
 using Vapt.Core;
+using Vapt.Core.Perf;
 using Vapt.Core.Tweaks;
 
 namespace Vapt.Pages;
@@ -33,6 +34,7 @@ public sealed partial class TweaksPage : Page
         Body.Children.Insert(Body.Children.IndexOf(StatusBar), moved);
 
         Groups.Children.Add(BuildGameBoost());
+        Groups.Children.Add(BuildStandby());
 
         _list = new TweakList(
             TweakCatalog.Available.Where(t => t.Group is TweakGroup.Interface or TweakGroup.Performance or TweakGroup.Gaming).OrderBy(t => t.Group),
@@ -86,14 +88,67 @@ public sealed partial class TweaksPage : Page
 
             close.IsEnabled = false;
             var (closed, notClosed) = await Task.Run(() => GameBoost.Close(chosen));
+
+            // Com a RAM de verdade acabando, devolve também o cache standby (só nesse caso ajuda).
+            var purged = await Task.Run(() => StandbyCache.Query() is { } m && StandbyCache.WorthIt(m) ? StandbyCache.Purge() : null);
             close.IsEnabled = true;
             Fill();
+            var extra = purged is { Ok: true } ? $" A memória estava no limite: {purged.Message}" : "";
             Ui.ShowStatus(StatusBar, notClosed.Count == 0 ? InfoBarSeverity.Success : InfoBarSeverity.Informational,
-                notClosed.Count == 0
+                (notClosed.Count == 0
                     ? $"{closed.Count} programas fechados. Bom jogo!"
-                    : $"{closed.Count} fechados. {string.Join(", ", notClosed)} ainda estão abertos (talvez perguntando se quer salvar).");
+                    : $"{closed.Count} fechados. {string.Join(", ", notClosed)} ainda estão abertos (talvez perguntando se quer salvar).") + extra);
         };
         return expander;
+    }
+
+    /// <summary>
+    /// Limpar o cache standby da memória: só para PC com pouca RAM que engasga em jogo.
+    /// O texto diz quando vale a pena, em vez de prometer "PC mais rápido".
+    /// </summary>
+    private FrameworkElement BuildStandby()
+    {
+        var purge = new Button { Content = "Limpar agora", IsEnabled = Elevation.IsAdministrator };
+        var card = new CommunityToolkit.WinUI.Controls.SettingsCard
+        {
+            Header = "Cache da memória (standby)",
+            HeaderIcon = new FontIcon { Glyph = "" },
+            Content = purge,
+            Margin = new Thickness(0, 0, 0, 8),
+        };
+
+        void Describe()
+        {
+            const string what = "O Windows guarda arquivos usados na RAM que sobra, para abrir tudo mais rápido, e libera sozinho quando precisa. Limpar só ajuda em PC com pouca RAM (8 GB ou menos) que dá travadinhas em jogo.";
+            if (!Elevation.IsAdministrator)
+            {
+                card.Description = what + " Precisa do Vapt como administrador.";
+                return;
+            }
+
+            if (StandbyCache.Query() is not { } m)
+            {
+                card.Description = what;
+                return;
+            }
+
+            var now = $"Agora: {Bytes.Format(m.FreeBytes)} livres ({m.FreePercent:0}%), {Bytes.Format(m.StandbyBytes)} de cache.";
+            var advice = StandbyCache.WorthIt(m)
+                ? " A memória livre está no limite: aqui limpar pode ajudar."
+                : " Tem memória livre de sobra: não precisa limpar.";
+            card.Description = what + "\n" + now + advice;
+        }
+
+        Describe();
+        purge.Click += async (_, _) =>
+        {
+            purge.IsEnabled = false;
+            var r = await Task.Run(StandbyCache.Purge);
+            purge.IsEnabled = true;
+            Describe();
+            Ui.ShowStatus(StatusBar, r.Ok ? InfoBarSeverity.Success : InfoBarSeverity.Warning, r.Message);
+        };
+        return card;
     }
 
     private async void OnUndoAll(object sender, RoutedEventArgs e)

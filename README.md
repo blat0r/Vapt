@@ -22,7 +22,7 @@ Limpeza, debloat, Recall, mapa do disco, pendrive de boot e reparo num app só, 
 
 - **Diz o que fazer.** O Check-up dá uma nota de 0 a 100 para o PC e lista cada problema com um botão de corrigir.
 - **Tudo volta atrás.** Antes de mudar qualquer coisa, o Vapt guarda o valor original. "Desfazer tudo" devolve o Windows exatamente como estava, e ainda há ponto de restauração.
-- **Só o que funciona.** Nada de "limpar registro", "liberar RAM" ou desligar o Defender: isso não deixa o PC mais rápido e às vezes estraga. Cada ajuste foi conferido no Windows 11 24H2/25H2 e no Windows 10 22H2.
+- **Só o que funciona.** Nada de "limpar registro", "liberar RAM" a toda hora ou desligar o Defender: isso não deixa o PC mais rápido e às vezes estraga. Cada ajuste foi conferido no Windows 11 24H2/25H2 e no Windows 10 22H2.
 - **Leve e nativo.** WinUI 3 com Mica (acrílico no Windows 10), abre em menos de um segundo e não fica rodando em segundo plano.
 - **Atualiza sozinho.** Cada versão nova publicada aqui chega no seu Vapt automaticamente.
 
@@ -52,7 +52,7 @@ Limpeza, debloat, Recall, mapa do disco, pendrive de boot e reparo num app só, 
 | **Início** | Check-up com nota e "Vapt vupt: corrigir tudo"; CPU, RAM e disco ao vivo. |
 | **Meu PC** | Sistema, placa-mãe/BIOS, processador, RAM por módulo (avisa quando o XMP está desligado), placa de vídeo, saúde dos discos, bateria (desgaste e ciclos), teste de disco e relatório HTML. |
 | **Limpeza** | Temporários, cache dos navegadores (senhas e cookies ficam), Lixeira, Windows Update, relatórios de erro, WinSxS pelo DISM. |
-| **Otimizações** | Interface, sistema e jogos, cada uma com desfazer. **Turbo para jogar** fecha OneDrive, Teams, Widgets e afins antes do jogo. |
+| **Otimizações** | Interface, sistema e jogos, cada uma com desfazer. **Turbo para jogar** fecha OneDrive, Teams, Widgets e afins antes do jogo. **Cache da memória** limpa a lista standby quando a RAM livre acaba (para PC com pouca RAM que engasga em jogo) e diz quando não precisa. |
 | **Inicialização** | Liga/desliga o que abre com o Windows (igual ao Gerenciador de Tarefas), com "Restaurar removidos". |
 | **Aplicativos** | Desinstala **sem deixar rastro** (procura as sobras como o Revo), vários de uma vez, entradas quebradas, **atualizações** pelo winget e **instalar os essenciais** depois de formatar. |
 | **Debloat** | Apps, anúncios, privacidade, IA e Recall, serviços e tarefas de coleta de dados. |
